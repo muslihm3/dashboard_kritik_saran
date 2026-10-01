@@ -3,614 +3,772 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Onty — Vote Outlet Favoritmu</title>
+<title>Onty — Dasbor Kepuasan Pelanggan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --brown-900:#4A1C08;
-    --brown-800:#6B2408;
-    --brown-700:#7E2B0B;
-    --orange-500:#EA9153;
-    --orange-400:#F2AC77;
-    --orange-100:#FCE3CC;
-    --cream:#FFF7EF;
+    --paper:#F7F1E2;
+    --paper-2:#FDFAF2;
+    --ink:#33231A;
+    --ink-soft:#6B5A4C;
+    --line:#E4D8C0;
+    --crust:#C4872E;
+    --crust-deep:#9C6519;
+    --jam:#9C2B3D;
+    --jam-soft:#F2DADD;
+    --sage:#586B4A;
+    --sage-soft:#E1E7D6;
     --cream-card:#FFFFFF;
-    --ink:#3A1C0C;
-    --ink-soft:#8A6A56;
-    --ok-green:#3F8A5B;
-    --radius-lg:28px;
-    --radius-md:18px;
-    --radius-sm:12px;
-    --shadow-card: 0 18px 40px -18px rgba(74,28,8,0.35);
+    --shadow: 0 1px 2px rgba(51,35,26,0.06), 0 8px 24px -12px rgba(51,35,26,0.18);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;}
   body{
-    margin:0;
-    font-family:'Inter',sans-serif;
-    background:var(--cream);
+    background:
+      radial-gradient(1200px 500px at 10% -10%, #FBF4E3 0%, transparent 60%),
+      var(--paper);
     color:var(--ink);
+    font-family:'Inter',sans-serif;
     -webkit-font-smoothing:antialiased;
+    padding:0 0 80px;
   }
-  h1,h2,h3,.display{
-    font-family:'Baloo 2',cursive;
-    font-weight:700;
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    padding:44px 0 30px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:36px;
+  }
+  .brandrow{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .brandmark{display:flex;align-items:center;gap:14px;}
+  .stamp{
+    width:52px;height:52px;border-radius:50%;
+    border:2px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:600;font-size:20px;
+    transform:rotate(-6deg);
+    flex-shrink:0;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(30px,4vw,42px);
     letter-spacing:-0.01em;
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important; transition:none !important;}
-  }
-
-  /* ---------- Decorative swirl (roll-cake cross-section) ---------- */
-  .swirl-bg{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
-  }
-  .swirl-bg svg{
-    position:absolute;
-    top:-18%;
-    right:-22%;
-    width:70%;
-    max-width:520px;
-    height:auto;
-    opacity:0.95;
-  }
-  @media (max-width:640px){
-    .swirl-bg svg{ width:95%; top:-12%; right:-38%;}
-  }
-
-  /* ---------- Header / Hero ---------- */
-  header.hero{
-    position:relative;
-    background:linear-gradient(160deg, var(--brown-800) 0%, var(--brown-900) 100%);
-    color:#fff;
-    padding:44px 24px 90px;
-    overflow:hidden;
-  }
-  .brand{
-    position:relative;
-    z-index:2;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:34px;
-  }
-  .brand-logo{
-    height:40px;
-    width:auto;
-    display:block;
-  }
-  .hero-copy{ position:relative; z-index:2; max-width:520px; }
-  .eyebrow{
-    display:inline-block;
-    font-size:0.78rem;
-    font-weight:700;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--orange-400);
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.18);
-    padding:6px 14px;
-    border-radius:999px;
-    margin-bottom:16px;
-  }
-  header.hero h1{
-    font-size:clamp(1.9rem, 5vw, 2.6rem);
-    line-height:1.1;
-    margin:0 0 14px;
-    color:#fff;
-  }
-  header.hero h1 em{
-    font-style:normal;
-    color:var(--orange-400);
-  }
-  header.hero p{
-    font-size:1rem;
-    line-height:1.65;
-    color:#F2DDCC;
     margin:0;
+    line-height:1.05;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+  }
+  .period{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .period b{color:var(--ink);}
+  .sub{
+    margin-top:14px;
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:640px;
+    line-height:1.55;
   }
 
-  /* ---------- Layout ---------- */
-  main{
-    max-width:640px;
-    margin:0 auto;
-    padding:0 20px 70px;
+  /* ---------- KPI strip ---------- */
+  .kpis{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:34px;
+    box-shadow:var(--shadow);
   }
+  .kpi{background:var(--cream-card);padding:22px 22px;}
+  .kpi .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--ink-soft);margin-bottom:10px;
+  }
+  .kpi .value{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:32px;line-height:1;color:var(--ink);
+    display:flex;align-items:baseline;gap:6px;
+  }
+  .kpi .value small{font-family:'Inter';font-weight:600;font-size:15px;color:var(--ink-soft);}
+  .kpi .delta{margin-top:9px;font-size:12.5px;color:var(--sage);font-weight:600;}
+  .kpi .delta.warn{color:var(--jam);}
+
+  /* ---------- Section shell ---------- */
+  .grid2{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-bottom:20px;align-items:stretch;}
+  @media (max-width:900px){.grid2{grid-template-columns:1fr;}}
   .card{
     background:var(--cream-card);
-    border-radius:var(--radius-lg);
-    box-shadow:var(--shadow-card);
-    padding:30px 24px 34px;
-    margin-top:-64px;
-    position:relative;
-    z-index:3;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:24px 26px 26px;
+    box-shadow:var(--shadow);
   }
-  @media (min-width:520px){
-    .card{ padding:38px 40px 44px; }
+  .card h2{
+    font-family:'Fraunces',serif;font-weight:600;font-size:19px;margin:0 0 4px;
   }
+  .card .desc{font-size:13px;color:var(--ink-soft);margin:0 0 20px;}
 
-  fieldset{
-    border:none;
-    margin:0 0 32px;
-    padding:0;
-  }
-  .q-label{
-    display:flex;
-    gap:12px;
-    align-items:flex-start;
-    margin-bottom:16px;
-  }
-  .q-num{
-    flex-shrink:0;
-    width:30px; height:30px;
-    border-radius:50%;
-    background:var(--orange-100);
-    color:var(--brown-700);
-    font-family:'Baloo 2',cursive;
-    font-weight:700;
-    font-size:0.95rem;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .q-title{
-    font-family:'Baloo 2',cursive;
-    font-weight:600;
-    font-size:1.12rem;
-    color:var(--brown-900);
-    margin:2px 0 2px;
-  }
-  .q-sub{
-    font-size:0.86rem;
-    color:var(--ink-soft);
-    margin:2px 0 0;
-  }
+  /* ---------- Trend chart ---------- */
+  .trend-svg{width:100%;height:200px;overflow:visible;}
+  .axis-label{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:var(--ink-soft);}
 
-  .outlet-options{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+  /* ---------- Rating distribution ---------- */
+  .rbar-row{display:flex;align-items:center;gap:12px;margin-bottom:13px;}
+  .rbar-row:last-child{margin-bottom:0;}
+  .rlabel{
+    width:78px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
   }
-  @media (max-width:420px){
-    .outlet-options{ grid-template-columns:1fr; }
-  }
-  .outlet-options input{
-    position:absolute;
-    opacity:0;
-    width:0; height:0;
-  }
+  .rtrack{flex:1;height:14px;background:#F1E9D6;border-radius:7px;overflow:hidden;}
+  .rfill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--crust-deep),var(--crust));}
+  .rcount{width:78px;text-align:right;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+
+  /* ---------- Outlet compare ---------- */
+  .outlets{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+  @media (max-width:700px){.outlets{grid-template-columns:1fr;}}
   .outlet-card{
-    display:flex;
-    flex-direction:column;
+    background:var(--cream-card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;box-shadow:var(--shadow);position:relative;
+  }
+  .outlet-card .oname{font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin-bottom:2px;}
+  .outlet-card .oaddr{font-size:12px;color:var(--ink-soft);margin-bottom:16px;}
+  .oscore-row{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;}
+  .oscore{font-family:'Fraunces',serif;font-weight:600;font-size:34px;}
+  .oscore-of{font-size:14px;color:var(--ink-soft);}
+  .opill{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    background:var(--sage-soft);color:var(--sage);padding:3px 9px;border-radius:20px;margin-left:auto;
+  }
+  .ostats{display:flex;gap:18px;font-size:12.5px;color:var(--ink-soft);}
+  .ostats b{color:var(--ink);font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- Issues ---------- */
+  .issue-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);}
+  .issue-row:last-child{border-bottom:none;}
+  .issue-name{flex:1;font-size:13.5px;font-weight:600;}
+  .issue-bar-track{width:140px;height:8px;background:#F1E9D6;border-radius:4px;overflow:hidden;flex-shrink:0;}
+  .issue-bar-fill{height:100%;background:var(--jam);border-radius:4px;}
+  .issue-n{width:28px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);flex-shrink:0;}
+
+  /* ---------- Raw kritik & saran list ---------- */
+  .ks-list{max-height:560px;overflow-y:auto;padding-right:6px;}
+  .ks-row{
+    display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line);
     align-items:flex-start;
-    gap:8px;
-    border:2px solid #F0DFCF;
-    background:#FFFCF9;
-    border-radius:var(--radius-md);
-    padding:16px 16px 14px;
-    cursor:pointer;
-    transition:border-color .15s ease, background .15s ease, transform .1s ease;
   }
-  .outlet-card:hover{ border-color:var(--orange-400); }
-  .outlet-card .pin{
-    width:30px; height:30px;
-    border-radius:50%;
-    background:var(--orange-100);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--brown-700);
+  .ks-row:last-child{border-bottom:none;}
+  .ks-meta{
+    flex-shrink:0;width:150px;display:flex;flex-direction:column;gap:3px;
   }
-  .outlet-card .pin svg{ width:16px; height:16px; }
-  .outlet-card .name{
-    font-family:'Baloo 2',cursive;
-    font-weight:600;
-    font-size:1rem;
-    color:var(--brown-900);
+  .ks-outlet{font-size:11px;font-weight:700;color:var(--ink);}
+  .ks-date{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);}
+  .ks-score{
+    font-family:'Fraunces',serif;font-weight:700;font-size:12px;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;border-radius:50%;border:1.3px solid var(--ink-soft);
+    margin-top:2px;
   }
-  .outlet-card .check{
-    margin-left:auto;
-    width:20px;height:20px;
-    border-radius:50%;
-    border:2px solid #E3CBB4;
+  .ks-score.s5{border-color:var(--sage);color:var(--sage);}
+  .ks-score.s4{border-color:var(--crust-deep);color:var(--crust-deep);}
+  .ks-score.s3, .ks-score.s2, .ks-score.s1{border-color:var(--jam);color:var(--jam);}
+  .ks-text{flex:1;font-size:13.5px;line-height:1.55;color:var(--ink);white-space:pre-line;}
+  .ks-count{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);margin-bottom:14px;}
+
+  /* ---------- Feed controls ---------- */
+  .feed-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:20px;}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;
+    padding:7px 13px;border-radius:20px;border:1px solid var(--line);background:var(--paper-2);
+    cursor:pointer;color:var(--ink-soft);transition:all .15s ease;user-select:none;
+  }
+  .chip:hover{border-color:var(--crust);color:var(--ink);}
+  .chip.active{background:var(--ink);color:var(--paper-2);border-color:var(--ink);}
+  .search{
+    font-family:'Inter';font-size:13.5px;padding:9px 14px;border-radius:20px;
+    border:1px solid var(--line);background:var(--paper-2);width:220px;color:var(--ink);
+  }
+  .search:focus{outline:none;border-color:var(--crust);}
+
+  /* ---------- Receipt feed ---------- */
+  #feed{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;
+  }
+  .ticket{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:18px 18px 16px;
     position:relative;
-    align-self:flex-end;
-    margin-top:-26px;
+    font-family:'IBM Plex Mono',monospace;
+    box-shadow:var(--shadow);
   }
-  .outlet-options input:checked + .outlet-card{
-    border-color:var(--orange-500);
-    background:linear-gradient(180deg, #FFF3E8 0%, #FFFCF9 100%);
-    transform:translateY(-1px);
+  .ticket::before{
+    content:"";position:absolute;top:-1px;left:0;right:0;height:10px;
+    background-image: radial-gradient(circle at 8px 0, transparent 6px, var(--paper) 6.5px);
+    background-size:16px 10px;background-repeat:repeat-x;background-position:top;
   }
-  .outlet-options input:checked + .outlet-card .check{
-    border-color:var(--orange-500);
-    background:var(--orange-500);
+  .t-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .t-outlet{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);}
+  .t-score{
+    font-family:'Fraunces',serif;font-weight:700;font-size:15px;
+    width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    border:1.5px solid var(--ink);
   }
-  .outlet-options input:checked + .outlet-card .check::after{
-    content:"";
-    position:absolute; inset:4px;
-    border-radius:50%;
-    background:#fff;
+  .t-score.s5{border-color:var(--sage);color:var(--sage);}
+  .t-score.s4{border-color:var(--crust-deep);color:var(--crust-deep);}
+  .t-score.s3{border-color:var(--jam);color:var(--jam);}
+  .t-text{
+    font-family:'Inter';font-size:13.5px;line-height:1.55;color:var(--ink);
+    margin-bottom:12px;
+    max-height:none;
   }
-  .outlet-options input:focus-visible + .outlet-card{
-    outline:3px solid var(--orange-500);
-    outline-offset:2px;
+  .t-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+  .t-tag{
+    font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;
+    background:var(--jam-soft);color:var(--jam);padding:3px 8px;border-radius:3px;
   }
-
-  textarea{
-    width:100%;
-    min-height:110px;
-    border:2px solid #F0DFCF;
-    border-radius:var(--radius-md);
-    padding:14px 16px;
-    font-family:'Inter',sans-serif;
-    font-size:0.96rem;
-    color:var(--ink);
-    resize:vertical;
-    background:#FFFCF9;
-  }
-  textarea:focus, input[type=text]:focus, input[type=email]:focus{
-    outline:none;
-    border-color:var(--orange-500);
-  }
-  input[type=text], input[type=email]{
-    width:100%;
-    border:2px solid #F0DFCF;
-    border-radius:var(--radius-md);
-    padding:12px 16px;
-    font-family:'Inter',sans-serif;
-    font-size:0.96rem;
-    background:#FFFCF9;
-    color:var(--ink);
+  .t-date{font-size:10.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:9px;}
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
   }
 
-  /* ---------- Alasan (reason) checkbox pills ---------- */
-  .reason-options{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+  section{margin-bottom:20px;}
+  .section-title{
+    font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:44px 0 18px;
   }
-  .reason-options input{
-    position:absolute;
-    opacity:0;
-    width:0; height:0;
-  }
-  .reason-pill{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    border:2px solid #F0DFCF;
-    background:#FFFCF9;
-    border-radius:999px;
-    padding:10px 16px;
-    cursor:pointer;
-    font-size:0.92rem;
-    font-weight:600;
-    color:var(--brown-900);
-    transition:border-color .15s ease, background .15s ease;
-  }
-  .reason-pill:hover{ border-color:var(--orange-400); }
-  .reason-pill .dot{
-    width:16px; height:16px;
-    border-radius:5px;
-    border:2px solid #E3CBB4;
-    flex-shrink:0;
-    position:relative;
-  }
-  .reason-options input:checked + .reason-pill{
-    border-color:var(--orange-500);
-    background:linear-gradient(180deg, #FFF3E8 0%, #FFFCF9 100%);
-  }
-  .reason-options input:checked + .reason-pill .dot{
-    border-color:var(--orange-500);
-    background:var(--orange-500);
-  }
-  .reason-options input:checked + .reason-pill .dot::after{
-    content:"";
-    position:absolute; inset:3px;
-    border-radius:2px;
-    background:#fff;
-  }
-  .reason-options input:focus-visible + .reason-pill{
-    outline:3px solid var(--orange-500);
-    outline-offset:2px;
-  }
-  #alasanLainnyaWrap{
-    display:none;
-    margin-top:12px;
-  }
-  #alasanLainnyaWrap.show{ display:block; }
-  .char-count{
-    text-align:right;
-    font-size:0.76rem;
-    color:var(--ink-soft);
-    margin-top:6px;
-  }
-
-  .submit-btn{
-    width:100%;
-    border:none;
-    background:linear-gradient(180deg, var(--orange-500), #DE7A34);
-    color:#fff;
-    font-family:'Baloo 2',cursive;
-    font-weight:700;
-    font-size:1.05rem;
-    padding:16px 20px;
-    border-radius:999px;
-    cursor:pointer;
-    box-shadow:0 14px 26px -12px rgba(222,122,52,0.65);
-    transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-  }
-  .submit-btn:hover{ transform:translateY(-1px); }
-  .submit-btn:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
-  .form-note{
-    text-align:center;
-    font-size:0.78rem;
-    color:var(--ink-soft);
-    margin-top:12px;
-  }
-  .error-msg{
-    display:none;
-    background:#FDEDED;
-    border:1px solid #F3C6C6;
-    color:#9A3131;
-    font-size:0.85rem;
-    padding:10px 14px;
-    border-radius:var(--radius-sm);
-    margin-bottom:18px;
-  }
-  .error-msg.show{ display:block; }
-
-  /* ---------- Thank you screen ---------- */
-  #thankyou{
-    display:none;
-    text-align:center;
-    padding:10px 6px 6px;
-  }
-  #thankyou.show{ display:block; }
-  #voteForm.hide{ display:none; }
-  .ty-icon{
-    width:72px; height:72px;
-    margin:0 auto 18px;
-    border-radius:50%;
-    background:var(--orange-100);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .ty-icon svg{ width:34px; height:34px; }
-  #thankyou h2{ color:var(--brown-900); font-size:1.5rem; margin:0 0 10px; }
-  #thankyou p{ color:var(--ink-soft); font-size:0.95rem; line-height:1.6; max-width:380px; margin:0 auto; }
-
   footer{
-    text-align:center;
-    padding:24px 20px 40px;
-    font-size:0.78rem;
-    color:var(--ink-soft);
+    margin-top:50px;padding-top:24px;border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
   }
+
+  /* ---------- AI Insight Card ---------- */
+  .ai-card{
+    background: linear-gradient(180deg, #FFFDF8 0%, var(--cream-card) 100%);
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .ai-card::before{
+    content:"";position:absolute;top:-40%;right:-10%;width:280px;height:280px;
+    background:radial-gradient(circle, rgba(196,135,46,0.10) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .ai-head{display:flex;align-items:center;gap:12px;margin-bottom:4px;flex-wrap:wrap;}
+  .ai-badge{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;
+    background:var(--ink);color:var(--paper-2);padding:4px 11px;border-radius:20px;
+    flex-shrink:0;
+  }
+  .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px;}
+  @media (max-width:800px){.ai-grid{grid-template-columns:1fr;}}
+  .ai-block h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:15.5px;margin:0 0 10px;
+    display:flex;align-items:center;gap:7px;
+  }
+  .ai-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .ai-dot.good{background:var(--sage);}
+  .ai-dot.watch{background:var(--jam);}
+  .ai-list{list-style:none;padding:0;margin:0;}
+  .ai-list li{
+    font-size:13.5px;line-height:1.55;color:var(--ink);
+    padding:8px 0 8px 18px;border-bottom:1px dashed var(--line);position:relative;
+  }
+  .ai-list li:last-child{border-bottom:none;}
+  .ai-list li::before{
+    content:"—";position:absolute;left:0;color:var(--ink-soft);
+  }
+  .ai-list .n{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);}
+  .ai-narrative{
+    font-size:14px;line-height:1.7;color:var(--ink);margin:16px 0 4px;
+    padding:14px 16px;background:var(--paper-2);border-left:3px solid var(--crust);border-radius:0 8px 8px 0;
+  }
+  .ai-reco{margin-top:20px;}
+  .ai-reco h3{font-family:'Fraunces',serif;font-weight:600;font-size:15.5px;margin:0 0 10px;}
+  .ai-reco ol{margin:0;padding-left:20px;}
+  .ai-reco li{font-size:13.5px;line-height:1.6;color:var(--ink);margin-bottom:8px;}
+  .ai-reco li b{color:var(--crust-deep);}
+  .ai-empty{color:var(--ink-soft);font-size:13px;text-align:center;padding:20px;}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header class="hero">
-  <div class="swirl-bg" aria-hidden="true">
-    <svg viewBox="0 0 400 400" fill="none">
-      <circle cx="200" cy="200" r="180" fill="none" stroke="#8A3010" stroke-width="46"/>
-      <path d="M200 40 A160 160 0 1 1 40 200" fill="none" stroke="#EA9153" stroke-width="46" stroke-linecap="round"/>
-      <circle cx="200" cy="200" r="108" fill="none" stroke="#8A3010" stroke-width="34"/>
-      <path d="M200 92 A108 108 0 1 1 92 200" fill="none" stroke="#F2AC77" stroke-width="34" stroke-linecap="round"/>
-      <circle cx="200" cy="200" r="42" fill="#EA9153"/>
-    </svg>
-  </div>
-
-  <div class="brand">
-    <img src="data:image/png;base64,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" alt="Onty" class="brand-logo">
-  </div>
-
-  <div class="hero-copy">
-    <span class="eyebrow">Vote Outlet Favorit</span>
-    <h1>Bantu kami jadi lebih <em>baik lagi</em> ya!</h1>
-    <p>Terima kasih sudah meluangkan waktu untuk mengisi penilaian outlet Onty. Penilaian ini kami pakai untuk terus meningkatkan kualitas produk dan pelayanan di setiap outlet — cuma butuh waktu kurang dari 1 menit.</p>
-  </div>
-</header>
-
-<main>
-  <div class="card">
-
-    <div class="error-msg" id="errorMsg">Yuk lengkapi dulu email dan pilihan outlet sebelum kirim ya 🙏</div>
-
-    <form id="voteForm">
-      <fieldset>
-        <div class="q-label">
-          <span class="q-num">1</span>
-          <div>
-            <p class="q-title">Email kamu</p>
-            <p class="q-sub">Supaya kami bisa hubungi balik kalau perlu</p>
-          </div>
+  <header class="top">
+    <div class="brandrow">
+      <div class="brandmark">
+        <div class="stamp">O</div>
+        <div>
+          <p class="eyebrow">Customer Feedback Intelligence</p>
+          <h1>Onty Resto & Cake Bakery</h1>
         </div>
-        <input type="email" id="email" maxlength="120" placeholder="nama@email.com" required>
-      </fieldset>
-
-      <fieldset>
-        <div class="q-label">
-          <span class="q-num">2</span>
-          <div>
-            <p class="q-title">Mana outlet yang paling mendekati kriteria kamu?</p>
-            <p class="q-sub">Pilih salah satu outlet</p>
-          </div>
-        </div>
-        <div class="outlet-options" role="radiogroup" aria-label="Vote outlet favorit">
-          <input type="radio" name="voteOutlet" id="outlet-toba" value="Outlet Toba" required>
-          <label class="outlet-card" for="outlet-toba">
-            <span class="pin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5S15.9 3 12 3 5 5.6 5 9.5 12 21 12 21Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
-            <span class="name">Outlet Toba</span>
-            <span class="check"></span>
-          </label>
-
-          <input type="radio" name="voteOutlet" id="outlet-ib" value="Outlet Imam Bonjol" required>
-          <label class="outlet-card" for="outlet-ib">
-            <span class="pin"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5S15.9 3 12 3 5 5.6 5 9.5 12 21 12 21Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
-            <span class="name">Outlet Imam Bonjol</span>
-            <span class="check"></span>
-          </label>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <div class="q-label">
-          <span class="q-num">3</span>
-          <div>
-            <p class="q-title">Alasan memilih outlet tersebut?</p>
-            <p class="q-sub">Boleh pilih lebih dari satu</p>
-          </div>
-        </div>
-        <div class="reason-options">
-          <input type="checkbox" name="alasan" id="alasan-dekat" value="Lebih dekat">
-          <label class="reason-pill" for="alasan-dekat"><span class="dot"></span>Lebih dekat</label>
-
-          <input type="checkbox" name="alasan" id="alasan-layanan" value="Pelayanan lebih bagus">
-          <label class="reason-pill" for="alasan-layanan"><span class="dot"></span>Pelayanan lebih bagus</label>
-
-          <input type="checkbox" name="alasan" id="alasan-lokasi" value="Lokasi strategis">
-          <label class="reason-pill" for="alasan-lokasi"><span class="dot"></span>Lokasi strategis</label>
-
-          <input type="checkbox" name="alasan" id="alasan-nyaman" value="Tempat lebih nyaman">
-          <label class="reason-pill" for="alasan-nyaman"><span class="dot"></span>Tempat lebih nyaman</label>
-
-          <input type="checkbox" name="alasan" id="alasan-lainnya" value="Lainnya">
-          <label class="reason-pill" for="alasan-lainnya"><span class="dot"></span>Lainnya</label>
-        </div>
-        <div id="alasanLainnyaWrap">
-          <input type="text" id="alasanLainnyaText" maxlength="150" placeholder="Tulis alasanmu...">
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <div class="q-label">
-          <span class="q-num">4</span>
-          <div>
-            <p class="q-title">Ada kritik atau saran buat Onty?</p>
-            <p class="q-sub">Opsional — ceritakan pengalamanmu, kami baca semua kok</p>
-          </div>
-        </div>
-        <textarea id="kritikSaran" maxlength="500" placeholder="Tulis kritik dan saranmu di sini..."></textarea>
-        <div class="char-count"><span id="charCount">0</span>/500</div>
-      </fieldset>
-
-      <button type="submit" class="submit-btn" id="submitBtn">Kirim Penilaian</button>
-      <p class="form-note">Jawaban kamu langsung tercatat dan hanya dipakai untuk internal Onty.</p>
-    </form>
-
-    <div id="thankyou">
-      <div class="ty-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#DE7A34" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <h2>Makasih banyak! 🍰</h2>
-      <p>Penilaian kamu sudah kami terima. Masukan ini bakal jadi bahan bakar buat Onty terus jadi lebih baik untuk kamu.</p>
+      <div class="period">Periode survei<br><b id="periodLabel">1 Feb 2026 — 25 Jul 2026</b> · <span id="periodCount">299</span> respons</div>
     </div>
+    <p class="sub">Dasbor ini merangkum hasil form kepuasan pelanggan yang diisi langsung oleh karyawan/admin di dua lokasi — Onty Resto (Jl. Imam Bonjol) dan Onty Cake & Bakery (Jl. Toba), Pekalongan.</p>
+  </header>
 
+  <div class="card" style="margin-bottom:26px;">
+    <h2>Filter Periode</h2>
+    <p class="desc">Pilih bulan tertentu atau rentang tanggal custom — seluruh dasbor akan menyesuaikan</p>
+    <div class="filters" id="monthFilters" style="margin-bottom:16px;"></div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <label style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);">Dari</label>
+      <input type="date" id="dateFrom" class="search" style="width:160px;border-radius:8px;">
+      <label style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);">Sampai</label>
+      <input type="date" id="dateTo" class="search" style="width:160px;border-radius:8px;">
+      <div class="chip" id="resetFilterBtn">Reset ke Semua</div>
+    </div>
   </div>
-</main>
 
-<footer>Onty - Happiness in Every Moments</footer>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="card ai-card" style="margin-bottom:34px;">
+    <div class="ai-head">
+      <div class="ai-badge">✦ Analisa AI</div>
+      <h2 style="margin:0;">Ringkasan & Rekomendasi</h2>
+    </div>
+    <p class="desc">Dibuat otomatis dari pola 299 respons survei Feb–Jul 2026. Diperbarui saat filter periode diubah.</p>
+    <div id="aiSummary"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>Tren Rating Mingguan</h2>
+      <p class="desc">Rata-rata skor kepuasan (skala 1–5) per minggu</p>
+      <svg class="trend-svg" id="trendChart" viewBox="0 0 640 200" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="card">
+      <h2>Distribusi Rating</h2>
+      <p class="desc">Sebaran skor dari seluruh 99 respons</p>
+      <div id="ratingDist"></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Perbandingan Outlet</h2>
+  <div class="outlets" id="outlets"></div>
+
+  <h2 class="section-title">Feed Ulasan Pelanggan</h2>
+  <div class="card">
+    <div class="feed-head">
+      <div class="filters" id="outletFilters"></div>
+      <input class="search" id="searchBox" placeholder="Cari kata kunci…">
+    </div>
+    <div class="filters" id="ratingFilters" style="margin-bottom:20px;"></div>
+    <div id="feed"></div>
+  </div>
+
+  <footer>
+    <span>Dibuat otomatis dari data Google Form &middot; Onty CRM Dashboard</span>
+    <span id="genCount"></span>
+  </footer>
+
+</div>
 
 <script>
-  // =====================================================================
-  // KONFIGURASI: tempel URL Web App Google Apps Script kamu di sini
-  // Lihat file PANDUAN-SETUP.md untuk cara membuatnya (gratis, 5 menit)
-  // =====================================================================
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbzmFYtoH-0E16eDIokS2JDEGJ8iEPjs4hvEvqfp09omYIFEwLqbfZ04iSzX4QOd-h1e/exec";
+const DATA = [{"ts": "2/1/2026 21:06:32", "date": "2026-02-01", "outlet": "Onty Resto", "rating": 5, "text": "roti dan cake nya enak jgn sampai berubah rasanya dan ukuran jangan berubah ya 🤗", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "2/2/2026 12:03:37", "date": "2026-02-02", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pelayanan ramah, kuenya enak2 , tapi kemarin mau pesen yang bolu pandan GX ada pdhl enak 😅 tapi semua enak sih suka 😍 Sukes terus untuk Onty cake", "email": "", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "2/2/2026 16:43:15", "date": "2026-02-02", "outlet": "Onty Resto", "rating": 5, "text": "Sementara belum ada,,,", "email": "", "tags": []}, {"ts": "2/2/2026 18:24:39", "date": "2026-02-02", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Sangat baik dan tingkatkan kualitas selu yaaa", "email": "", "tags": []}, {"ts": "2/2/2026 21:31:03", "date": "2026-02-02", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "baik", "email": "", "tags": []}, {"ts": "2/4/2026 10:06:40", "date": "2026-02-04", "outlet": "Onty Resto", "rating": 5, "text": "Pesanan sesuai kesepakatan. Datang tepat waktu. Kemasan baik.\nRoti enak semuaaa....\nSaran. Kalo bisa segala jenis pesanan seperti roti luar pandan atau blueberry(luar ijo atau ungu) yg untuk memperindah jenis2 roti bisa tersedia", "email": "", "tags": ["Ketepatan Waktu/Pengiriman", "Kualitas Rasa Produk", "Kemasan/Packaging"]}, {"ts": "2/4/2026 11:47:27", "date": "2026-02-04", "outlet": "Onty Resto", "rating": 5, "text": "Semoga semakin jaya", "email": "", "tags": []}, {"ts": "2/4/2026 13:42:03", "date": "2026-02-04", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Keren bgt onty.. sukses terus semakin byk lg cabangnya.", "email": "", "tags": []}, {"ts": "2/4/2026 17:00:28", "date": "2026-02-04", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga onty cake semakin laris dan bisa menciptakan berbagai inovasi cake dan tart yang lebih unik", "email": "", "tags": []}, {"ts": "2/4/2026 18:02:15", "date": "2026-02-04", "outlet": "Onty Resto", "rating": 5, "text": "Kue nya cantik rasanya manis dan enak,tekstur lembut ...\nPelayanan baik,respon cepat Amanah ,,", "email": "", "tags": ["Kecepatan Respon Admin/CS", "Kualitas Rasa Produk"]}, {"ts": "2/4/2026 18:06:29", "date": "2026-02-04", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tetap di tingkatkan lg yaa dan banyakin promo", "email": "", "tags": []}, {"ts": "2/5/2026 15:43:54", "date": "2026-02-05", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sudahh bagus tdk ada kritik saran", "email": "", "tags": []}, {"ts": "2/5/2026 16:32:02", "date": "2026-02-05", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "👍🏻", "email": "", "tags": []}, {"ts": "2/5/2026 18:11:52", "date": "2026-02-05", "outlet": "Onty Resto", "rating": 5, "text": "Tambahkan varian seafood", "email": "", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "2/5/2026 18:12:18", "date": "2026-02-05", "outlet": "Onty Resto", "rating": 5, "text": "Tambahkan varian seafood", "email": "", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "2/5/2026 19:48:53", "date": "2026-02-05", "outlet": "Onty Resto", "rating": 5, "text": "tidak ada", "email": "", "tags": []}, {"ts": "2/5/2026 21:01:32", "date": "2026-02-05", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Onty selalu memuaskan baik pelayanan maupun produk2nya.\nSukses dan berkah selalu Onty", "email": "", "tags": []}, {"ts": "2/5/2026 21:23:19", "date": "2026-02-05", "outlet": "Onty Resto", "rating": 5, "text": "Trimakasih", "email": "", "tags": []}, {"ts": "2/6/2026 9:46:15", "date": "2026-02-06", "outlet": "Onty Resto", "rating": 4, "text": "Sudah cukup baik", "email": "", "tags": []}, {"ts": "2/6/2026 13:36:08", "date": "2026-02-06", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Ontime , rotinya enak2, dus nya ekslusive💖", "email": "", "tags": ["Ketepatan Waktu/Pengiriman", "Kualitas Rasa Produk", "Kemasan/Packaging"]}, {"ts": "2/6/2026 20:16:40", "date": "2026-02-06", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "selalu puas dgn hasilnyaa", "email": "", "tags": []}, {"ts": "2/8/2026 9:12:06", "date": "2026-02-08", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Kalau kirim jarak nya jauh tdk di kena kan ongkir otau free", "email": "", "tags": ["Ketepatan Waktu/Pengiriman", "Harga/Ongkir"]}, {"ts": "2/8/2026 12:40:16", "date": "2026-02-08", "outlet": "Onty Resto", "rating": 5, "text": "Buat cake yg ukuran besar dong yg kalu  buat hantaran itu terlihat pantas", "email": "", "tags": ["Ketepatan Waktu/Pengiriman"]}, {"ts": "2/8/2026 16:11:51", "date": "2026-02-08", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sukakkkk bangettttt enak", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "2/9/2026 12:01:37", "date": "2026-02-09", "outlet": "Onty Resto", "rating": 5, "text": "Lebih banyak promo promo", "email": "", "tags": []}, {"ts": "2/10/2026 14:10:05", "date": "2026-02-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Menurut saya ini enak, tidak terlalu manis\nRekomend sih", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "2/11/2026 10:37:55", "date": "2026-02-11", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga kedepannya lebih baik", "email": "", "tags": []}, {"ts": "2/12/2026 19:13:23", "date": "2026-02-12", "outlet": "Onty Resto", "rating": 4, "text": "Sudah bagus pelayanannya, Mbak dan Mas nya ramah..", "email": "", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "2/13/2026 11:46:01", "date": "2026-02-13", "outlet": "Onty Resto", "rating": 5, "text": "Sangat baik pelayanan nya. \nRuangan nyaman. \nTerimakasih ontyyy 🩷", "email": "", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "2/13/2026 11:53:16", "date": "2026-02-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Roti Terenak yg saya coba di Pekalongan", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "2/13/2026 19:16:16", "date": "2026-02-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "pelayanannya bagus,ramah \nkue nya juga enakk sangat puas pokoknya😍", "email": "", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "2/14/2026 10:06:47", "date": "2026-02-14", "outlet": "Onty Resto", "rating": 4, "text": "Sebaiknya pelayan lebih sigap menyambut pelanggan yg datang dan saat antrian sebaiknya pelayan memeprhatikan urutan antrian yang sesuai\nTerimakasih", "email": "", "tags": []}, {"ts": "2/14/2026 17:31:48", "date": "2026-02-14", "outlet": "Onty Resto", "rating": 5, "text": "Sangat baik dan akomodir", "email": "", "tags": []}, {"ts": "2/15/2026 9:53:43", "date": "2026-02-15", "outlet": "Onty Resto", "rating": 5, "text": "Sejauh ini sih pelayanannya oke banget, mbak nya tuh baikkk and friendly gitu tapi tetep sopan jadi pas aku mau pesen cake ga grogi ngejelasin cake yang aku mau. Cake nya juga enak and aeshthetic gituuu lucu lucuu, tempat nya juga nyaman banget sihhh, and aku sempet kaya plin plan tapi mbak nya tetep usahain yang terbaik gitu,pokoknya love banget 🫰🏻🫰🏻", "email": "", "tags": ["Kualitas Rasa Produk", "Kebersihan/Fasilitas", "Pelayanan Karyawan/Sikap"]}, {"ts": "2/14/2026 20:55:11", "date": "2026-02-14", "outlet": "Onty Resto", "rating": 4, "text": "Sudah cukup baik semua dari segi rasa makanan pelayanan, dan tempat yg baru di renovasinya membuat nuasa baru yg lebih nyaman, minusnya hanya ada lalat yg banyak beterbangan di dalam resto, mungkin kebersihannya yg perlu di tingkatkan lagi", "email": "", "tags": ["Kualitas Rasa Produk", "Kebersihan/Fasilitas", "Pelayanan Karyawan/Sikap"]}, {"ts": "2/15/2026 11:07:27", "date": "2026-02-15", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Insya allah semakin kaya dan semakin banyak ouletnya sampe keluar kota kaka", "email": "", "tags": []}, {"ts": "2/17/2026 15:18:16", "date": "2026-02-17", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "-", "email": "", "tags": []}, {"ts": "2/21/2026 19:03:20", "date": "2026-02-21", "outlet": "Onty Resto", "rating": 5, "text": "Sangat baik", "email": "", "tags": []}, {"ts": "2/22/2026 21:07:25", "date": "2026-02-22", "outlet": "Onty Cake & Bakery", "rating": 3, "text": "CS dlm merekap pesanan msh blm fokus, berkali2 terdapat kesalahan, makanan enak, untuk ayam krispi mohon ditingkatkan lagi kualitas rasa tepungnya, tp udang dan cumi saos padangnya juara, enak banget, good luck onty", "email": "", "tags": ["Kecepatan Respon Admin/CS", "Kesalahan Pesanan/Miskom", "Kualitas Rasa Produk"]}, {"ts": "2/24/2026 18:44:23", "date": "2026-02-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Puas sekali order cake disini, semoga Onty cake terus sukses!!!", "email": "", "tags": []}, {"ts": "2/24/2026 20:16:49", "date": "2026-02-24", "outlet": "Onty Resto", "rating": 4, "text": "Kak coba ayam karang menanci nya td agak asam ya.. Sebelum tak campur sama acar nya . G kayak biasa", "email": "", "tags": []}, {"ts": "2/26/2026 14:03:16", "date": "2026-02-26", "outlet": "Onty Resto", "rating": 5, "text": "Sudah sangat baik pelayanan nya.. kualitas jg tidak diragukan lagi.. dan harga yg affordable.. pertahankan ya.. terimakasih", "email": "", "tags": ["Harga/Ongkir"]}, {"ts": "2/26/2026 20:07:56", "date": "2026-02-26", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan ramah, menu enak, tempat sangat nyaman luas dan strategis... Sukses terus untk onty", "email": "", "tags": ["Kualitas Rasa Produk", "Kebersihan/Fasilitas", "Pelayanan Karyawan/Sikap"]}, {"ts": "2/27/2026 11:20:01", "date": "2026-02-27", "outlet": "Onty Resto", "rating": 5, "text": "Oke", "email": "", "tags": []}, {"ts": "2/27/2026 19:45:55", "date": "2026-02-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga tetap amanah dan semakin lbh baik🤲🏻", "email": "", "tags": []}, {"ts": "2/27/2026 20:52:49", "date": "2026-02-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pelayanan sudah bagus respon cs nya cepat pengantaran juga tepat waktu aman tidak ada yang kurang", "email": "", "tags": ["Kecepatan Respon Admin/CS", "Ketepatan Waktu/Pengiriman"]}, {"ts": "2/27/2026 22:12:52", "date": "2026-02-27", "outlet": "Onty Resto", "rating": 4, "text": "Pelayanannya ramah, Makanannya jg enak, cm tadi ada misskom saja sedikit,tp its okay itu hal yg wajar, Sukses terus Onty Cake & Resto 🥰🙏", "email": "", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "2/28/2026 16:25:25", "date": "2026-02-28", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "terimakasih pelayana baik tdk ada kritik sarannya dah bagus sekali responnya dipertahankan", "email": "", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "2/28/2026 18:11:32", "date": "2026-02-28", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "sudah baguss, jaga kualitas", "email": "", "tags": []}, {"ts": "2/28/2026 19:15:50", "date": "2026-02-28", "outlet": "Onty Resto", "rating": 5, "text": "Menu yg ikan asin kurang renyah, tebal,susah dimakan🤭tapi semua menu rasa dan penyajiannya udah okey, tks atas pelayanannya, sukses selalu untuk Onty ya", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/1/2026 12:43:14", "date": "2026-03-01", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sudah cukup baik", "email": "", "tags": []}, {"ts": "3/1/2026 17:14:28", "date": "2026-03-01", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Cakenya sesuai ekspetasi baru kali ini nemuin cake yang sesuai dengan keinginan🫶🏻", "email": "", "tags": []}, {"ts": "3/2/2026 12:13:31", "date": "2026-03-02", "outlet": "Onty Resto", "rating": 4, "text": "Pelayanannya fast respon dan amanah, saya sudah 2x bukber di onty. Memesan pesanan yang berbeda. Bukber pertama saya pesan paket hemat nasi daun jeruk dan ayam kremes. Kritiknya mohon maaf pada bukber pertama ayam kremesnya kurang juicy dan cenderung agak kering saran untuk ayam kremes bisa juicy seperti yg di ayam kribo. Kemudian porsi yg saya bukber pertama porsinya terlalu banyak untuk nasinya dan mau tanya min, kalau di nasi daun jeruk tdk ada lalapan seperti yang non nasi daun jeruk nggih? Jika ada, akan menambah rasa bagi para pecinta lalapan. Kemudian di snack yg campursari. Untuk campursari 2 untuk harga 32k menurut saya kurang sesuai karena porsinya yg lumayan sedikit saran bisa mungkin ditambah lagi🙏untuk rasa sudah sesuai dan enak. \n\nPada bukber yg kedua saya pesan paket hemat daun jeruk ayam kribo, tidak ada kritik karena dari segi ayam enak juicy dan sesuai ekspetasi. bisa menambah menu datangnya jga cepat dan amanah walaupun saya pesan untuk 2 orang. Terimakasih onty💞", "email": "", "tags": ["Kecepatan Respon Admin/CS", "Kualitas Rasa Produk", "Harga/Ongkir", "Saran Menu/Varian Baru"]}, {"ts": "3/2/2026 13:00:46", "date": "2026-03-02", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah baik", "email": "", "tags": []}, {"ts": "3/2/2026 18:58:22", "date": "2026-03-02", "outlet": "Onty Resto", "rating": 5, "text": "Puas", "email": "", "tags": []}, {"ts": "3/2/2026 19:37:42", "date": "2026-03-02", "outlet": "Onty Resto", "rating": 5, "text": "Overal sudah bagus semua", "email": "", "tags": []}, {"ts": "3/3/2026 21:56:04", "date": "2026-03-03", "outlet": "Onty Resto", "rating": 5, "text": "untuk saat bukber utamakan minuman keluar dulu, agar bisa segera berbuka. \nTadi saya makan udang saos padang, rasanya juara, sayang gak pedes, mungkin ada opsi lain, extra sambal atau ada pilihan yg spicy buat yg suka pedes, Es pisang ijonya enak, tapi untuk kulitnya agak kurang lembut ya, dan sedikit kurang manis. selebihnya semua OK, masakannya enak, pelayan juga gercep dan ramah,", "email": "", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "3/4/2026 4:20:11", "date": "2026-03-04", "outlet": "Onty Resto", "rating": 4, "text": "Saat bulan puasa, mungkin bisa buka lebih awal jika ada pesanan jumlah banyak. Terimakasih", "email": "", "tags": []}, {"ts": "3/4/2026 22:09:15", "date": "2026-03-04", "outlet": "Onty Resto", "rating": 5, "text": "sudah sangat baik dalam pelayanan, cuma tadi agak terkendala listrik mati jadi ada yang sedikit kurang. but so far, so good lah dan makanannya enak", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/5/2026 14:19:25", "date": "2026-03-05", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "enak rotinya", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/5/2026 18:55:13", "date": "2026-03-05", "outlet": "Onty Resto", "rating": 5, "text": "Baik banget pelayananya", "email": "", "tags": []}, {"ts": "3/5/2026 19:31:56", "date": "2026-03-05", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "pelayanan sudah okeee, mohon dipertahankan kakk!!!❤️🫰🏻", "email": "", "tags": []}, {"ts": "3/6/2026 20:10:29", "date": "2026-03-06", "outlet": "Onty Resto", "rating": 5, "text": "Menu garang seger ayamnya kurang greget, kurang seger po yaa. Mgkin perlu dikasih tomat atau apa.\nMohon maaf min ga paham resep, cm bs review rasa scr umum hehe makasih", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/6/2026 20:56:30", "date": "2026-03-06", "outlet": "Onty Resto", "rating": 5, "text": "Semoga bisa ditambah menu buah ...", "email": "", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "3/6/2026 20:59:11", "date": "2026-03-06", "outlet": "Onty Resto", "rating": 5, "text": "Mohon maaf untuk admin nya kalau bisa lebih cepat dikit tapi saya puas dengan layanan nya di onty cake terimakasih", "email": "", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "3/6/2026 21:05:34", "date": "2026-03-06", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada kritik", "email": "", "tags": []}, {"ts": "3/7/2026 5:44:16", "date": "2026-03-07", "outlet": "Onty Resto", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/7/2026 18:37:08", "date": "2026-03-07", "outlet": "Onty Resto", "rating": 5, "text": "Baik", "email": "", "tags": []}, {"ts": "3/7/2026 22:38:25", "date": "2026-03-07", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Mantap pokonya", "email": "", "tags": []}, {"ts": "3/8/2026 4:29:23", "date": "2026-03-08", "outlet": "Onty Resto", "rating": 4, "text": "Kurang puas sama menu ayam geprek nya, dapatnya ayam bagian sayap yg kecil banget", "email": "", "tags": []}, {"ts": "3/8/2026 18:24:39", "date": "2026-03-08", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/8/2026 20:50:53", "date": "2026-03-08", "outlet": "Onty Resto", "rating": 5, "text": "Sudah bagus", "email": "", "tags": []}, {"ts": "3/8/2026 20:57:41", "date": "2026-03-08", "outlet": "Onty Resto", "rating": 4, "text": "Pertama kritik:\n Kak, mohon maaf sekali untuk tempat seperti pengalaman kami untuk foto foto di ruang tengah mungkin masih terkendala karena terlalu banyak/ruang yang ful dengan pelanggan reservasi. Namun kami suka dengan tema ruang yang bagus dan nyaman, dan kakak pj. Yang mengofirmasih jelas dan cekatan dengan membalas chat dari Costumer. \nSaran: \n Kami tipe yang bila kemana mana kita harus bgt bgt bgt buat foto, kayaknya panderasa ada tempat nya namun untuk beberapa orang. \n\nTrimakasih atas pelayanan dari onty cake kami puas, dan kami enjoy", "email": "", "tags": ["Kecepatan Respon Admin/CS", "Kualitas Rasa Produk", "Kebersihan/Fasilitas", "Pelayanan Karyawan/Sikap"]}, {"ts": "3/8/2026 21:46:36", "date": "2026-03-08", "outlet": "Onty Resto", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/8/2026 22:56:57", "date": "2026-03-08", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada kritik dan tidak ada saran, semuanya ok", "email": "", "tags": []}, {"ts": "3/9/2026 18:43:47", "date": "2026-03-09", "outlet": "Onty Resto", "rating": 5, "text": "semuanya sudah baik 👍🏼", "email": "", "tags": []}, {"ts": "3/9/2026 19:58:59", "date": "2026-03-09", "outlet": "Onty Resto", "rating": 4, "text": "Tambah minuman....kopi dan nyoklat", "email": "", "tags": []}, {"ts": "3/10/2026 10:27:33", "date": "2026-03-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sangat sesuai pelayanannya dan pesanan sesuai. Proses pengiriman juga tepat", "email": "", "tags": ["Ketepatan Waktu/Pengiriman"]}, {"ts": "3/10/2026 10:28:50", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan nya sangat baik dan ramah, rotinya enak-enak, variasinya banyak. Semoga semakin berkembang lagi dan punya banyak cabang", "email": "", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "3/10/2026 14:08:29", "date": "2026-03-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "nggak ada, onty cake bestttt bgt!! selalu order cake di onty kalo ada yang ultah dan gapernah mengecewakan <33", "email": "", "tags": []}, {"ts": "3/10/2026 14:11:00", "date": "2026-03-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/10/2026 15:39:57", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 5, "text": "Mohon lebih cepat membalas pesan", "email": "", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "3/10/2026 15:42:06", "date": "2026-03-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Selama ini saya pesan cake & bakery selalu di onty cake by online. Pengirimannya cepat, adminnya ramah, dan pelayanannya sangat bagus. Next time kalau singgah ke Pekalongan saya mau mampir ke offline store nya onty cake biar bisa nyobain langsung semua cake yang ada disana.", "email": "", "tags": ["Kecepatan Respon Admin/CS", "Ketepatan Waktu/Pengiriman", "Pelayanan Karyawan/Sikap"]}, {"ts": "3/10/2026 16:42:39", "date": "2026-03-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "gaadaaa siii,soalnyaaa uda the best bgttt,keluargakuuu yang mungkin gabisa makan rasa coklat bisa pilih yg base cake nyaaa vanillla topp siiii hehe", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/10/2026 17:37:35", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 5, "text": "Senang dengan pelayanannya", "email": "", "tags": []}, {"ts": "3/10/2026 17:52:39", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 4, "text": "Kurang fast respon dlm jawab wa", "email": "", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "3/10/2026 19:47:01", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 5, "text": "Pertahankan kualitas service dan rasa makanan 👍", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/10/2026 21:03:11", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 5, "text": "Semuanya memuaskan baik menu maupun pelayanannya. Pertahankan.", "email": "", "tags": []}, {"ts": "3/10/2026 21:15:51", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan sudahh baikkk", "email": "", "tags": []}, {"ts": "3/10/2026 23:54:22", "date": "2026-03-10", "outlet": "Onty Resto", "rating": 4, "text": "Komunikasi antar karyawan (kasir/admin dan waiter) kurang. \nSaya melakukan reservasi dengan langsung melunasi seluruh orderan saya via transfer. Saya juga ada memesan tambahan menu dan langsung saya bayar ke kasir setelah selesai makan (tapi belum hendak keluar dr resto). Saat akan keluar resto, salah satu waiter mendatangi dan meminta kami untuk melunasi pembayaran pesanan kami. Saya sampaikan bahwa saya sudah membayar lunas, dan pesanan tambahan pun sdh saya payment. Bahkan saya tunjukkan struk pembayaran yg saya terima dr kasir, tapi waiter tdk mencoba sebentar saja untuk melihat dan cek struk tersebut. Hanya meminta saya untuk menunggu sekitar 7-8 menit untuk dia konfirmasi ke kasir/admin. \nSaran saya, konfirmasi ke kasir dilakukan sebelum melakukan penagihan ke customer. Jika terkonfirm blm membayar, baru lakukan penagihan. Jika sudah, ya jgn ditagih lagi. saya merasa waiter spt tdk percaya dengan yang saya sampaikan kalau saya sdh membayar.", "email": "", "tags": ["Kecepatan Respon Admin/CS", "Ketepatan Waktu/Pengiriman", "Kesalahan Pesanan/Miskom", "Kualitas Rasa Produk"]}, {"ts": "3/11/2026 14:58:50", "date": "2026-03-11", "outlet": "Onty Resto", "rating": 5, "text": "Selalu ditingkatkan kualitasnya ya", "email": "", "tags": []}, {"ts": "3/11/2026 20:06:43", "date": "2026-03-11", "outlet": "Onty Resto", "rating": 5, "text": "tidak ada", "email": "", "tags": []}, {"ts": "3/12/2026 5:29:48", "date": "2026-03-12", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Top semakin sukses", "email": "", "tags": []}, {"ts": "3/12/2026 18:53:49", "date": "2026-03-12", "outlet": "Onty Resto", "rating": 5, "text": "MasyaAllah", "email": "", "tags": []}, {"ts": "3/13/2026 11:44:36", "date": "2026-03-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga semakin rame toko ny , n pelayanannya terus dpertahankan krn sudah bagus agar semakin bagus lagi", "email": "", "tags": []}, {"ts": "3/13/2026 14:12:58", "date": "2026-03-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Order buat jam 1 tapi Dateng nya jam 13.18, it's okey barangkali dijalan macet.... \nMungkin buat kedepannya bisa lebih on time lagi ya kak☺️🙏🏻", "email": "", "tags": []}, {"ts": "3/13/2026 18:18:16", "date": "2026-03-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Ramahh polll pelayanannya", "email": "", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "3/13/2026 19:14:27", "date": "2026-03-13", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan oke \nRasa oke", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/13/2026 21:29:52", "date": "2026-03-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Rotinya enak. Lembut..", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/14/2026 18:51:45", "date": "2026-03-14", "outlet": "Onty Resto", "rating": 5, "text": "Baik", "email": "", "tags": []}, {"ts": "3/14/2026 19:03:56", "date": "2026-03-14", "outlet": "Onty Resto", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/14/2026 19:14:53", "date": "2026-03-14", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sangat puassss", "email": "", "tags": []}, {"ts": "3/14/2026 20:36:35", "date": "2026-03-14", "outlet": "Onty Resto", "rating": 4, "text": "Pelayanan bagus", "email": "", "tags": []}, {"ts": "3/15/2026 8:25:09", "date": "2026-03-15", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah bagus semua baik dr segi pelayanan dan produc nya , semoga tambah maju", "email": "", "tags": []}, {"ts": "3/15/2026 14:15:10", "date": "2026-03-15", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga bisa memperluas toko yg toba ya kak.. Sehingga pelanggan ndak desak²an kalau menjelang hari raya seperti ini.. Aamiin..", "email": "", "tags": []}, {"ts": "3/15/2026 14:57:03", "date": "2026-03-15", "outlet": "Onty Resto", "rating": 5, "text": "Sudah baek", "email": "", "tags": []}, {"ts": "3/15/2026 20:44:43", "date": "2026-03-15", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga onty cake kedepan setiap lebarannya selalu ada putri salju. Akhirnya yg di nanti dri lebaran kemarin putri saljunya onty enak.", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/16/2026 5:07:29", "date": "2026-03-16", "outlet": "Onty Resto", "rating": 4, "text": "Bagus, pelayanan dan komunikasi sangat baik. Smoga menu hampers taon depan lebih beragam lagi, terima kasih.", "email": "", "tags": ["Kesalahan Pesanan/Miskom"]}, {"ts": "3/16/2026 7:48:46", "date": "2026-03-16", "outlet": "Onty Resto", "rating": 5, "text": "Enak", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/16/2026 11:49:05", "date": "2026-03-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/16/2026 13:41:51", "date": "2026-03-16", "outlet": "Onty Resto", "rating": 5, "text": "", "email": "", "tags": []}, {"ts": "3/16/2026 13:44:09", "date": "2026-03-16", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Tingkatkan profesionalitas", "email": "", "tags": []}, {"ts": "3/16/2026 13:45:44", "date": "2026-03-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah amat sangat terpercaya ....langganan ...walaupun saya pesennya mepet pasti langsung ok 😍", "email": "", "tags": []}, {"ts": "3/16/2026 13:47:03", "date": "2026-03-16", "outlet": "Onty Resto", "rating": 5, "text": "Tetap selalu jaga kualitas rasa.. onty cake & bakery ok.. ok..ok...", "email": "", "tags": ["Kualitas Rasa Produk"]}, {"ts": "3/16/2026 13:47:39", "date": "2026-03-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Baik", "email": "", "tags": []}, {"ts": "3/16/2026 17:06:12", "date": "2026-03-16", "outlet": "Onty Resto", "rating": 5, "text": "tidak ada kritik saran, all good. sukses selalu onty cake", "email": "", "tags": []}, {"ts": "3/18/2026 9:29:53", "date": "2026-03-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah sangat puas. Kemarin ambil di toko onty cake 2 juga sekarang pelayanan pegawainya masya Allah luar biasa, udah kayak bakery kelas nasional. Sukses terus onty cake", "email": "", "tags": []}, {"ts": "3/18/2026 9:52:51", "date": "2026-03-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/18/2026 9:55:30", "date": "2026-03-18", "outlet": "Onty Resto", "rating": 5, "text": "gak ada kritik, sudah oke.", "email": "", "tags": []}, {"ts": "3/18/2026 9:56:38", "date": "2026-03-18", "outlet": "Onty Resto", "rating": 5, "text": "Tidak ada", "email": "", "tags": []}, {"ts": "3/18/2026 10:06:54", "date": "2026-03-18", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanannya baik", "email": "", "tags": []}, {"ts": "3/18/2026 10:26:50", "date": "2026-03-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Delivery service spc utk Tart ... kl pake driver ojek was was e agak clumsy ..", "email": "", "tags": []}, {"ts": "3/18/2026 11:20:04", "date": "2026-03-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "kualitas cake nya bagus untuk rasanya lembut ngga terlalu manis dan ngga kemanisan, pokoknya pas rasanya, padahal di taruh pendingin dia ngga jdi padet masih tetep lembut pas dimakan. untuk pelayannya jg ramah\" selalu konfirmasi kalo ada apa\" makasih ya kak... sehat slalu mohon maaf lahir batin🙏🩷", "email": "", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "3/18/2026 16:43:21", "date": "2026-03-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tetap pertahankan rasa dan kualitas dengan harga yang terjangkau ya ka", "email": "", "tags": ["Kualitas Rasa Produk", "Harga/Ongkir"]}, {"ts": "3/18/2026 18:19:22", "date": "2026-03-18", "outlet": "Onty Resto", "rating": 5, "text": "-", "email": "", "tags": []}, {"ts": "3/19/2026 21:33:36", "date": "2026-03-19", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga makin bervariasi lagi Kak hampers kuenyaa, sukses selalu untuk Onty Cake", "email": "", "tags": []}, {"ts": "3/19/2026 21:35:38", "date": "2026-03-19", "outlet": "Onty Resto", "rating": 5, "text": "Tingkatkan kwalitas pelayanan & mutu..\nSukses bt Onty", "email": "", "tags": []}, {"ts": "3/19/2026 21:40:00", "date": "2026-03-19", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Kalau bs ada delivery order nya dg minimal pembelian. dan \nBiar tdk membuang waktu untuk pesan ojol.. \nSemangaaaat onty", "email": "", "tags": []}, {"ts": "3/20/2026 3:40:37", "date": "2026-03-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Apa ya? Udah oke sih, ga ada kritik/saran", "email": "", "tags": []}, {"ts": "3/20/2026 3:51:13", "date": "2026-03-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Kudu selalu konsisten", "email": "", "tags": []}, {"ts": "3/20/2026 11:05:47", "date": "2026-03-20", "outlet": "Onty Resto", "rating": 5, "text": "Pertahankan melayani konsumen yang sdh baik", "email": "", "tags": []}, {"ts": "3/20/2026 21:23:50", "date": "2026-03-20", "outlet": "Onty Cake & Bakery", "rating": 2, "text": "Jangan terlalu mahal kak, kalau ada saingan sekelas conato bakery aja pasti onty cake kalah di harga,kualitas dan rasa pastinya. Soalnya tart di conato jauhhh lebih enak dan murah dibandingkan dengan di onty🙏maaf kak hanya sekedar saran aja, takutnya ada saingan yang lebih murah dan enak. Takut pelanggannya pada pindah kalau rasanya gak worth it dengan harganya", "email": "", "tags": ["Kualitas Rasa Produk", "Harga/Ongkir"]}, {"ts": "3/20/2026 21:26:13", "date": "2026-03-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada", "email": "", "tags": []}, {"ts": "3/20/2026 22:14:47", "date": "2026-03-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Best in servis good job", "email": "", "tags": []}, {"ts": "3/20/2026 22:57:40", "date": "2026-03-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sering² diadain promo 😅", "email": "", "tags": []}, {"ts": "3/20/2026 23:57:58", "date": "2026-03-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pelayanannya sangat memuaskan. Karyawan sopan dan ramah. Tetap dipertahankan.", "email": "", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "3/21/2026 5:25:47", "date": "2026-03-21", "outlet": "Onty Resto", "rating": 5, "text": "Semoga segera buka cabang d area sekitar kedungwuni atau Comal ☺", "email": "", "tags": []}, {"ts": "3/22/2026 9:17:18", "date": "2026-03-22", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga tambah baik lagi untuk pelayanannya", "email": "", "tags": []}, {"ts": "3/25/2026 6:27:23", "date": "2026-03-25", "outlet": "Onty Resto", "rating": 5, "text": "Tidak pernah mengecewakan", "email": "renjanektar@gmail.com", "tags": []}, {"ts": "3/25/2026 19:11:34", "date": "2026-03-25", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Terimakasih semoga berkah aamiin", "email": "muhsobirin23@gmail.com", "tags": []}, {"ts": "3/25/2026 19:51:56", "date": "2026-03-25", "outlet": "Onty Resto", "rating": 5, "text": "mantap", "email": "bearystraw6@gmail.com", "tags": []}, {"ts": "3/26/2026 18:04:49", "date": "2026-03-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "suka bgttt, sayang bgt nyobain nya setahun sekali pas mudik😭❤️❤️❤️🤏🏻🤏🏻🤏🏻🤏🏻", "email": "nibrasakunemail@icloud.com", "tags": []}, {"ts": "3/26/2026 20:41:40", "date": "2026-03-26", "outlet": "Onty Resto", "rating": 5, "text": "terimakasih yaa untuk pelayanannya. kami sangat terbantu dengan panderasa dan onty cake krn ramah dan informatif. pelayanannya jg cepet baget dan tanggap. luvv panderasa n onty🤍", "email": "giositakr@gmail.com", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "3/27/2026 9:32:58", "date": "2026-03-27", "outlet": "Onty Resto", "rating": 5, "text": "Sudah baik, kalau bisa ada bonusnya kalau beli banyak kak 😁", "email": "fitri.zafran81@gmail.com", "tags": []}, {"ts": "3/27/2026 22:28:58", "date": "2026-03-27", "outlet": "Onty Resto", "rating": 5, "text": "Klo bisa yang rumahnya dekat dengan outlet onty free ongkir, contoh sya rumah di depan pasar banjarsari kan dekat dengan outlet onty imam bonjol😊, semoga kedepannya bisa dipertimbangkan 🙏", "email": "anita.sulistyawati16@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "3/31/2026 20:33:11", "date": "2026-03-31", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Semoga selalu menjadi lebih baik dalam melayani", "email": "wimbuari8@gmail.com", "tags": []}, {"ts": "4/1/2026 18:22:02", "date": "2026-04-01", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Produk selalu terbaik roti nya enak murah diantar tepat waktuu. Sukses selalu ya", "email": "ameliarh670@gmail.com", "tags": ["Ketepatan Waktu/Pengiriman", "Kualitas Rasa Produk", "Harga/Ongkir"]}, {"ts": "4/1/2026 19:18:10", "date": "2026-04-01", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "mau order lagiiii", "email": "lailiikromah20@gmail.com", "tags": []}, {"ts": "4/2/2026 8:42:01", "date": "2026-04-02", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "baik", "email": "kurniakinar@gmail.com", "tags": []}, {"ts": "4/2/2026 16:52:48", "date": "2026-04-02", "outlet": "Onty Resto", "rating": 5, "text": "Sukses terus dan makin berkembang buat onty cake 🥰", "email": "elynuzuliya92@gmail.com", "tags": []}, {"ts": "4/2/2026 18:40:26", "date": "2026-04-02", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tambah lagi inovasi model kue ulang tahun anak yang bagus-bagus dengan harga yang terjangkau", "email": "ikbalalfino8@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "4/3/2026 19:03:20", "date": "2026-04-03", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Lebih banyakin diskonnya", "email": "agstnina87@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "4/4/2026 20:19:25", "date": "2026-04-04", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tempat parkirnya mohon diperluas", "email": "ratihrohmaniah0578@gmail.com", "tags": ["Kebersihan/Fasilitas"]}, {"ts": "4/5/2026 14:40:00", "date": "2026-04-05", "outlet": "Onty Resto", "rating": 5, "text": "Semoga onty cake dan resto semakin laris manis. Karena pelayanan ramah dan menu nya juga enak", "email": "nurkhasan4h91@gmail.com", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "4/5/2026 21:07:55", "date": "2026-04-05", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sdh cukup puas, pertahankan kualitasnya", "email": "lucy.jinaan@gmail.com", "tags": []}, {"ts": "4/6/2026 8:53:06", "date": "2026-04-06", "outlet": "Onty Resto", "rating": 4, "text": "Kemasan box lebih bagus ( dibuat kotak sama sisi), sendok dibungkus lebih higeinis, sambal dikemas lebih rapi. Tapi, untuk nasi jam 21.00 kok sudah berkeringat. Mungkin masih panas langsung dibungkus kertas. Semoga lain kali tidak terjadi lagi.", "email": "endangcipto58@gmail.com", "tags": ["Kemasan/Packaging"]}, {"ts": "4/6/2026 14:08:58", "date": "2026-04-06", "outlet": "Onty Resto", "rating": 5, "text": "Sudah bagus sekali.. ga ada saran..", "email": "retha.danika@gmail.com", "tags": []}, {"ts": "4/6/2026 19:29:16", "date": "2026-04-06", "outlet": "Onty Resto", "rating": 5, "text": "Bagusss", "email": "dematoserba@gmail.com", "tags": []}, {"ts": "4/7/2026 18:09:12", "date": "2026-04-07", "outlet": "Onty Resto", "rating": 3, "text": "Cakenya bagus dan enak, tapi untuk petugas pelayanannya kurang ramah", "email": "rimapekalongan5@gmail.com", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "4/9/2026 12:04:27", "date": "2026-04-09", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Warna kue ultah bagus pekat namun saat anak anak makan susah dibersihkan di mulut dan tangan", "email": "ekaaa.wulan@gmail.com", "tags": ["Kebersihan/Fasilitas"]}, {"ts": "4/9/2026 19:07:13", "date": "2026-04-09", "outlet": "Onty Cake & Bakery", "rating": 5, "text": ".", "email": "lilysaa485@gmail.com", "tags": []}, {"ts": "4/9/2026 19:43:39", "date": "2026-04-09", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Oke semua", "email": "candy_bq80@yahoo.co.uk", "tags": []}, {"ts": "4/11/2026 9:28:01", "date": "2026-04-11", "outlet": "Onty Resto", "rating": 5, "text": "Pertahankan pelayanan yg baik", "email": "alikafatih@gmail.com", "tags": []}, {"ts": "4/11/2026 20:06:52", "date": "2026-04-11", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sudah bagus kakaa, semangat", "email": "ludyapitaloka22@gmail.com", "tags": []}, {"ts": "4/12/2026 10:49:27", "date": "2026-04-12", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Kepada bagian dekor, tanpa cust harus meminta, setelah FIX mohon cake.nya untuk langsung difoto/divideo seestetik mungkin. Terimakasih..", "email": "wahyuloveina@gmail.com", "tags": []}, {"ts": "4/12/2026 14:22:35", "date": "2026-04-12", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Pertahankan kualitas layanan agar costumer selalu merasa puas.\nBy Bank Syariah Indonesia\n👍", "email": "zaenal.puji@bankbsi.co.id", "tags": ["Kualitas Rasa Produk"]}, {"ts": "4/12/2026 14:57:15", "date": "2026-04-12", "outlet": "Onty Resto", "rating": 5, "text": "Agar selalu ada peningkatan pelayanan yg sdh baik", "email": "windun7@gmail.com", "tags": []}, {"ts": "4/12/2026 19:01:42", "date": "2026-04-12", "outlet": "Onty Resto", "rating": 5, "text": "sukses selalu onty", "email": "pratiwiyuliyanti11@gmail.com", "tags": []}, {"ts": "4/17/2026 19:15:33", "date": "2026-04-17", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Suka dg kue nya teksturnya lembut dan krimnya enak dan manisnya pas\nHarga juga terjangkau 🤗", "email": "fidiyah1505@gmail.com", "tags": ["Kualitas Rasa Produk", "Harga/Ongkir"]}, {"ts": "4/18/2026 8:27:10", "date": "2026-04-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Fast respon pelayanan", "email": "fikihahmad78@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "4/18/2026 14:55:43", "date": "2026-04-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semuanya  Ok cih bagus pula namun klo bisa ongkir lebih murce(murah) lagi kak", "email": "nan614318@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "4/18/2026 18:43:52", "date": "2026-04-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga bisa buka cabang di daerah Buaran, biar lebih dekat dr rumah", "email": "lia.khmaula@gmail.com", "tags": []}, {"ts": "4/18/2026 19:01:03", "date": "2026-04-18", "outlet": "Onty Resto", "rating": 5, "text": "Di perbanyak jumlah rotinya di toko karna kalau siang/sore sudah ada yg habis", "email": "nindy.sanita@gmail.com", "tags": ["Ketersediaan Stok"]}, {"ts": "4/18/2026 20:42:26", "date": "2026-04-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pelayanan sangat memuaskan...\nKue sangat enak n lembut... \nRekomendasi banget buat yang mau merayakan ulang tahun...", "email": "kabelmasbatik@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "4/19/2026 14:29:19", "date": "2026-04-19", "outlet": "Onty Resto", "rating": 5, "text": "Desain dan rasa cakenya terbaik, pelayanan selalu ramah, fast respon dan good luck selalu onty dalam memberdayakan masyarakat dan memajukan UMKM kota Pekalongan", "email": "endah.suciyati96@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "4/19/2026 16:06:18", "date": "2026-04-19", "outlet": "Onty Resto", "rating": 5, "text": "Perbanyak varian,terutama pudingnya", "email": "casmirahkaryanto22@gmail.com", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "4/19/2026 19:01:16", "date": "2026-04-19", "outlet": "Onty Resto", "rating": 4, "text": "Terus tingkatkan inovasi produk dan kualitasnya", "email": "fevisari16@gmail.com", "tags": []}, {"ts": "4/20/2026 19:29:06", "date": "2026-04-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Memuaskan semuanya", "email": "fitriast1922@gmail.com", "tags": []}, {"ts": "4/22/2026 13:37:26", "date": "2026-04-22", "outlet": "Onty Resto", "rating": 4, "text": "Melon kurang manis. Lainnya oke. Terima kasih banyak. Semoga Pande Rasa sukses senantiasa..", "email": "nurlailif213@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "4/23/2026 12:21:30", "date": "2026-04-23", "outlet": "Onty Resto", "rating": 5, "text": "", "email": "dsejati141012@gmail.com", "tags": []}, {"ts": "4/23/2026 17:40:54", "date": "2026-04-23", "outlet": "Onty Resto", "rating": 5, "text": "Baik sekali.. Saya puas pelayana baik... Tetp seperti ni jgn berubah...", "email": "yunidewi942@gmail.com", "tags": []}, {"ts": "4/23/2026 18:21:36", "date": "2026-04-23", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga semakin tambah buka cabang😍", "email": "jesikaananda98@gmail.com", "tags": []}, {"ts": "4/25/2026 17:26:42", "date": "2026-04-25", "outlet": "Onty Resto", "rating": 5, "text": "Langganan klo ada acara2 pesannya d onty cake..", "email": "mozazae21@gmail.com", "tags": []}, {"ts": "4/27/2026 9:09:59", "date": "2026-04-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "pesanan sesuai request, admin fast respon dan sangat ramah, sukses terus ya...", "email": "gamalherinata5@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Saran Menu/Varian Baru", "Pelayanan Karyawan/Sikap"]}, {"ts": "4/27/2026 20:05:25", "date": "2026-04-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tetap jaga kualitas kue nya ya kak", "email": "riskimaulan42@gmail.com", "tags": []}, {"ts": "4/27/2026 21:33:01", "date": "2026-04-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Puas bgt", "email": "hikmatulmaulida999@gmail.com", "tags": []}, {"ts": "4/28/2026 10:47:22", "date": "2026-04-28", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Admin Onty selalu ramah dalam pelayanan", "email": "opinovita22@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Pelayanan Karyawan/Sikap"]}, {"ts": "4/29/2026 18:09:57", "date": "2026-04-29", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Amanah dan satset", "email": "laybang91@gmail.com", "tags": []}, {"ts": "5/3/2026 14:13:05", "date": "2026-05-03", "outlet": "Onty Resto", "rating": 5, "text": "Sebagai saran saja, mungkin ada petugas yang bisa mengecek ke ruangan apabila sudah selesi makan atau minum, sehingga bisa diambil peralatan makan atau minum. Jadi ruangan lebih terlihat rapih lagi. Tetapi secara keseluruhan kami puas dengan pelayanan yang ada. Rekomen banget pande rasa.", "email": "zaenurisqiati@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "5/4/2026 14:49:03", "date": "2026-05-04", "outlet": "Onty Resto", "rating": 5, "text": "sejauh ini saya puas dengan pelayanan dari Onty Cake, jadi belum ada kritik untuk Onty. sukses terus untuk Onty Cake!", "email": "deaaransa@gmail.com", "tags": []}, {"ts": "5/7/2026 8:19:06", "date": "2026-05-07", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pelayannya konsumen sudah bagus, kue enak lembut di mulut. 👍", "email": "galihjateng00@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "5/7/2026 21:36:07", "date": "2026-05-07", "outlet": "Onty Resto", "rating": 5, "text": "Sudah sgt memuakan ,,pelayananan oke, rotinya enak,, yg mengantarkan jg dtg lebih awal ,,", "email": "khellymega86@gmail.com", "tags": ["Ketepatan Waktu/Pengiriman", "Kualitas Rasa Produk"]}, {"ts": "5/8/2026 15:58:57", "date": "2026-05-08", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga banyak promo menarik", "email": "lilikaisyah481@gmail.com", "tags": []}, {"ts": "5/8/2026 17:29:24", "date": "2026-05-08", "outlet": "Onty Resto", "rating": 5, "text": "Hasilnya bagus dan memuaskan👍🏻👍🏻", "email": "shafarany715@gmail.com", "tags": []}, {"ts": "5/9/2026 17:18:16", "date": "2026-05-09", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Ke 2x nya pesan b'day cake di Onty... Puas sm hasil dan pelayanannya.. Sukses trs utk Onty Cake..", "email": "benyta1993@gmail.com", "tags": []}, {"ts": "5/10/2026 14:08:22", "date": "2026-05-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pernah beli roti Onty yang di jalan Imam Bonjol, pelayanan kurang ramah dalam menjawab dan raut muka seperti menyepelekan. Lain di Onty jalan Toba, pelayanan ramah dan tidak judes. Kalau bisa diperbaiki dalam melayani pelanggan agar merasa nyaman saat membeli roti.", "email": "dwijayantiriyani@gmail.com", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "5/12/2026 14:43:58", "date": "2026-05-12", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Bonus (model) lilinnya kudu di upgrade hehehe. Overall 10 of 10 🤍🥰", "email": "febrianamaya8@gmail.com", "tags": []}, {"ts": "5/12/2026 20:57:12", "date": "2026-05-12", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Kritik saran nya sepertinya ndak ada.. soal nya selalu enak kue maupun roti nya onty.. semoga buka cabang yg ke 3 ya.. aamiin", "email": "dinip7910@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "5/14/2026 22:07:43", "date": "2026-05-14", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Hasilnya selalu memuaskan", "email": "musyarofah.xptu2@gmail.com", "tags": []}, {"ts": "5/16/2026 13:44:31", "date": "2026-05-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Bagus", "email": "tsalitsanurrahma@gmail.com", "tags": []}, {"ts": "5/16/2026 14:59:30", "date": "2026-05-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Excellent.", "email": "awidayat156@gmail.com", "tags": []}, {"ts": "5/16/2026 19:46:23", "date": "2026-05-16", "outlet": "Onty Resto", "rating": 5, "text": "Sudah sangat memuaskan pelayanannya", "email": "evinwira27@gmail.com", "tags": []}, {"ts": "5/19/2026 8:58:42", "date": "2026-05-19", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Semoga makin sukses", "email": "rizaastri@gmail.com", "tags": []}, {"ts": "5/20/2026 9:44:27", "date": "2026-05-20", "outlet": "Onty Resto", "rating": 5, "text": "Semoga tambah lancar usahanya", "email": "farohpuskomas@gmail.com", "tags": []}, {"ts": "5/20/2026 13:45:28", "date": "2026-05-20", "outlet": "Onty Resto", "rating": 5, "text": "respon bagus, pertahankan", "email": "ayyu_idda@yahoo.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "5/20/2026 20:35:17", "date": "2026-05-20", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan  ramah, tetep sllu memberikan servis yg baik untuk customer,", "email": "cartinititintitin4812@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "5/21/2026 10:42:09", "date": "2026-05-21", "outlet": "Onty Resto", "rating": 5, "text": "Pokoknya toko roti Ter best rasa dah cocok di lidah lembut poll 🫶🤩", "email": "lia010488@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "5/21/2026 16:00:16", "date": "2026-05-21", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Komunikasi selalu terjalin dengan baik", "email": "trismayanti2@gmail.com", "tags": ["Kesalahan Pesanan/Miskom"]}, {"ts": "5/22/2026 15:43:45", "date": "2026-05-22", "outlet": "Onty Resto", "rating": 5, "text": "Bagus", "email": "nie2ckkhoiru@gmail.com", "tags": []}, {"ts": "5/22/2026 17:55:33", "date": "2026-05-22", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Hallo Onty, terima kasih sdh membantu utk memberikan ucapan kepada teman saya. Pelayanan sangat baik dan memuaskan, kue juga tdk mengecewakan, baguslah.. saya pengen kasih masukan aja nih.. boleh engga misal kita kasih desain kue, kalo bisa sama dgn desain yang kita pengen, mungkin bisa lebih memuaskan lagi.. ok, tetep semangat meningkatkan kualitas dan pelayanan ya", "email": "windaprasetio@gmail.com", "tags": []}, {"ts": "5/23/2026 14:09:12", "date": "2026-05-23", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Bagus lbh di tingkatkan lagi", "email": "reyhanmoreno28032014@gmail.com", "tags": []}, {"ts": "5/24/2026 18:33:45", "date": "2026-05-24", "outlet": "Onty Resto", "rating": 5, "text": "Untuk pelayanan, komunikasi sudah bagus kak 👌🏻 \n\ncuman kemarin waktu pemesanan disaat proses cetak notanya agak lama kak. Bisa di percepat sedikit ya kak itu saya masukan/sarannya \n\nTerimakasih", "email": "nirohdan@gmail.com", "tags": ["Kesalahan Pesanan/Miskom"]}, {"ts": "5/26/2026 16:19:49", "date": "2026-05-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semakin sukses trus ontycake", "email": "zee.bisyir@gmail.com", "tags": []}, {"ts": "5/29/2026 3:38:58", "date": "2026-05-29", "outlet": "Onty Resto", "rating": 5, "text": "Servis pelanggan sangat luar biasa, tingkatkan terus kualitas n kuantitasnya agar onty benar2 ada di hati n tujuan semua orang", "email": "sitihenny45@guru.sma.belajar.id", "tags": []}, {"ts": "5/29/2026 17:38:59", "date": "2026-05-29", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada sejauh ini selalu memuaskan", "email": "larasayu1993@gmail.com", "tags": []}, {"ts": "5/31/2026 12:19:27", "date": "2026-05-31", "outlet": "Onty Resto", "rating": 5, "text": "Pertama kenal onty cake dari istri, istri sangat suka dengan rasa n pilihan rotinya, langganan tiap pengen bakery & cake, jadi saat ada acara syukuran gak ragu langsung tentuin onty sebagai pilihannya, Sukses selalu.", "email": "misbahgondem@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "5/31/2026 14:46:08", "date": "2026-05-31", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pelayanan baik dan memuaskan,Tingkatkan untuk menjadi onty lebih besar seindonesi .", "email": "solekha.wasmin@gmail.com", "tags": []}, {"ts": "5/31/2026 18:52:21", "date": "2026-05-31", "outlet": "Onty Resto", "rating": 5, "text": "Sukses terus untuk kedepannya", "email": "amaliaarisanti@gmail.com", "tags": []}, {"ts": "6/1/2026 9:00:01", "date": "2026-06-01", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "bagus", "email": "alethazhaviraa@gmail.com", "tags": []}, {"ts": "6/1/2026 20:30:24", "date": "2026-06-01", "outlet": "Onty Resto", "rating": 5, "text": "untuk tampilan ruang tengah yg panderasa setting tempat duduknya dibuat pelanggan nyaman utk makan. spy tdk terganggu lalu lalang karyawan dan konsumen yg beli roti. mungkin bs diberi sekat pemisah antara resto dan bakery onty nya", "email": "arysulistyowati2@gmail.com", "tags": ["Ketepatan Waktu/Pengiriman", "Kualitas Rasa Produk", "Kebersihan/Fasilitas", "Pelayanan Karyawan/Sikap"]}, {"ts": "6/1/2026 22:10:21", "date": "2026-06-01", "outlet": "Onty Resto", "rating": 5, "text": "tidak adaa", "email": "fannyyeee@gmail.com", "tags": []}, {"ts": "6/2/2026 8:35:12", "date": "2026-06-02", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Selalu repeat order kue ultah setiap tahunnya dan selalu puas sama hasilnya \nKue2 lain pun enak2 \nKlo ke Pekalongan always mampir di onty 🫶", "email": "icayulianingrum@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "6/2/2026 8:45:57", "date": "2026-06-02", "outlet": "Onty Resto", "rating": 3, "text": "Sempat terjadi drama, namun alhamdulillah terselesaikan dan mendapatkan pelayanan ekstra sebagai gantinya. Terimakasih.", "email": "ahafizh91@gmail.com", "tags": []}, {"ts": "6/2/2026 17:58:29", "date": "2026-06-02", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "indina.pklng@gmail.com", "tags": []}, {"ts": "6/3/2026 9:38:12", "date": "2026-06-03", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "baguss, rapih, baik banget semuanyaa", "email": "dwiamalia15@gmail.com", "tags": []}, {"ts": "6/6/2026 19:42:48", "date": "2026-06-06", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "baik", "email": "auliagita811@gmail.com", "tags": []}, {"ts": "6/7/2026 9:16:00", "date": "2026-06-07", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sedikit saran kakk, tolong lebih teliti lagi kak ,di cek kembali datanya, data customer yg sudah lunas dan yg baru dp\nSoalnya kemaren aku ambil kue padahal baru dp 50% blm lunas, tpi kakak nya bilang udh lunas, akhirnya aku jelasin kalo aku baru dp 50% trs pas di cek lagi sama kakaknya ternyata bener aku baru dp setengah blm lunas, trs aku bayar deh pelunasan (aku yg ambil kue tart atas nama Winda kak)\nLebih di cek lagi ya kakk \nTakutnya ada customer yg gk jujur hehe\nSelebihnya untuk pelayanan dan lainnya bagus bgtt sii, kakaknya juga sabar bgtt pas aku jelasin detail kue cake nya kaya gimana, dan untuk design cake nya juga itu sesuai ekspektasi aku dan temen temen bgtt kuenya juga enak, lembut, kayaknya soon bakal pesen lagii hehe\nMakasih banyak ya kakkk", "email": "windaoktaviani932@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "6/7/2026 16:50:50", "date": "2026-06-07", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan customer sudah sangat baik. Sarannya, banyakin diskon ya kak...", "email": "fl.viviantina@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "6/8/2026 9:05:32", "date": "2026-06-08", "outlet": "Onty Resto", "rating": 4, "text": "pengiriman bisa lebih pagi (jam 06 WIB)", "email": "smambarukmi@gmail.com", "tags": ["Ketepatan Waktu/Pengiriman"]}, {"ts": "6/8/2026 10:21:51", "date": "2026-06-08", "outlet": "Onty Resto", "rating": 4, "text": "Pertahankan dan tingkatkan mutu pelayanan yg sdh baik ini", "email": "bandibni46@gmail.com", "tags": []}, {"ts": "6/9/2026 13:36:40", "date": "2026-06-09", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada", "email": "tiarakan43@gmail.com", "tags": []}, {"ts": "6/10/2026 18:10:49", "date": "2026-06-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sukses selalu", "email": "pseptidian@gmail.com", "tags": []}, {"ts": "6/10/2026 19:28:17", "date": "2026-06-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Lebih sering ngadain disc ya😄", "email": "id.isnaini1@gmail.com", "tags": []}, {"ts": "6/12/2026 18:53:59", "date": "2026-06-12", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada kritik atau saran...semuanya sdh baguus", "email": "rivadwiagustina01@gmail.com", "tags": []}, {"ts": "6/12/2026 19:41:22", "date": "2026-06-12", "outlet": "Onty Resto", "rating": 5, "text": "Sukses terus onty", "email": "aditya.ayu21@gmail.com", "tags": []}, {"ts": "6/13/2026 10:00:53", "date": "2026-06-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Nice", "email": "nixmazizah02@gmail.com", "tags": []}, {"ts": "6/13/2026 14:41:12", "date": "2026-06-13", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan dan semua produknya sangat memuaskan", "email": "murtidamayanti.06@gmail.com", "tags": []}, {"ts": "6/13/2026 16:04:27", "date": "2026-06-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada", "email": "emte.tejamukti@gmail.com", "tags": []}, {"ts": "6/16/2026 12:19:57", "date": "2026-06-16", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Semoga terus berkembang & tetap mengutamakan kualitas 😊", "email": "khoirunnisa.k3676@gmail.com", "tags": []}, {"ts": "6/17/2026 7:46:55", "date": "2026-06-17", "outlet": "Onty Resto", "rating": 5, "text": "Mantab..\nSukses selalu..", "email": "igagalih2017@gmail.com", "tags": []}, {"ts": "6/17/2026 11:40:54", "date": "2026-06-17", "outlet": "Onty Resto", "rating": 4, "text": "Usahakan untuk pengiriman lebih tepat waktunya 🙏🙏", "email": "ahmadmurip2016@gmail.com", "tags": ["Ketepatan Waktu/Pengiriman"]}, {"ts": "6/18/2026 17:39:24", "date": "2026-06-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "ramah dan sabar adminnya, jelas dalam menjelaskan produk, produk enak semua.", "email": "rosettatries30@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "6/18/2026 20:52:11", "date": "2026-06-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah baik", "email": "derasukses30@gmail.com", "tags": []}, {"ts": "6/19/2026 23:13:54", "date": "2026-06-19", "outlet": "Onty Resto", "rating": 5, "text": "Perjelas format penyajian pemesanan antara Snack dan makan, kemudian mitigasi listrik mati yg lebih baik", "email": "ahafizh91@gmail.com", "tags": ["Ketepatan Waktu/Pengiriman"]}, {"ts": "6/20/2026 19:31:04", "date": "2026-06-20", "outlet": "Onty Cake & Bakery", "rating": 3, "text": "Saran packaging bento cake pakai bagasse box, soalnya krim kue nempel ditutup mika harusnya diperhatikan jarak ketinggannya. Untung ada chatgpt yg bisa bantu edit foto", "email": "bahiyyah25@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "6/20/2026 21:30:36", "date": "2026-06-20", "outlet": "Onty Resto", "rating": 4, "text": "Pertahankan keramahan dan senyum sapa kpd semua pengunjung", "email": "syafruddinch5@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "6/21/2026 10:36:30", "date": "2026-06-21", "outlet": "Onty Resto", "rating": 5, "text": "Sdh bagus, mungkin ukuran bila bisa dibesarkan sedikit", "email": "aniblimbing@gmail.com", "tags": []}, {"ts": "6/21/2026 16:59:59", "date": "2026-06-21", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "bagus", "email": "adibaliana08@gmail.com", "tags": []}, {"ts": "6/22/2026 7:55:37", "date": "2026-06-22", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Beessstt", "email": "noormaaulia27@gmail.com", "tags": []}, {"ts": "6/22/2026 13:05:56", "date": "2026-06-22", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sangat puas", "email": "hapidlohsani@gmail.com", "tags": []}, {"ts": "6/22/2026 17:37:49", "date": "2026-06-22", "outlet": "Onty Resto", "rating": 5, "text": "Gercep ramah sekali, selalu langganan dsnii❤️", "email": "lastrirahmadhani@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "6/22/2026 23:09:52", "date": "2026-06-22", "outlet": "Onty Resto", "rating": 4, "text": "Admin sudah baik dan ramah. Mungkin perlu lebih teliti lagi terkait penghitungan total harga. Sukses selalu onty cake.", "email": "novia.rachma26@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Harga/Ongkir", "Pelayanan Karyawan/Sikap"]}, {"ts": "6/24/2026 13:17:01", "date": "2026-06-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Terimakasih onty sudah selalu sabar menanggapi pertanyaan² ku", "email": "AfinaSakhi.dnd@gmail.com", "tags": []}, {"ts": "6/24/2026 13:35:00", "date": "2026-06-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga makin sukses", "email": "hayatiroh4@gmail.com", "tags": []}, {"ts": "6/24/2026 13:42:44", "date": "2026-06-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah sangat baik, terimakasih🙏", "email": "anisaja2525@gmail.com", "tags": []}, {"ts": "6/25/2026 15:56:05", "date": "2026-06-25", "outlet": "Onty Resto", "rating": 5, "text": "Bagusssss", "email": "chisolilkarom24@gmail.com", "tags": []}, {"ts": "6/25/2026 18:10:39", "date": "2026-06-25", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Cukup aja", "email": "abyanelfauzan5@gmail.com", "tags": []}, {"ts": "6/26/2026 18:53:03", "date": "2026-06-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "gaadaa ka , soalnya aku uda puass bgtt", "email": "gendisregina12@gmail.com", "tags": []}, {"ts": "6/27/2026 19:56:13", "date": "2026-06-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah baik semua. Semangat untuk Onty Cake semoga laris terus", "email": "monaericanugroho@yahoo.com", "tags": []}, {"ts": "6/27/2026 19:56:38", "date": "2026-06-27", "outlet": "Onty Resto", "rating": 5, "text": "Respon cepat dan pelayanan baik sekali", "email": "monaericanugroho@yahoo.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "6/27/2026 21:07:09", "date": "2026-06-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Klo bisa ada cabang di Batang Kota", "email": "nanikkurnia21@gmail.com", "tags": []}, {"ts": "6/28/2026 10:04:21", "date": "2026-06-28", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada karna puas bgt", "email": "fransiscadewioktaviany05@gmail.com", "tags": []}, {"ts": "6/28/2026 18:37:34", "date": "2026-06-28", "outlet": "Onty Resto", "rating": 5, "text": "Semoga tambah laris dan berkah", "email": "naelarizqi3@gmail.com", "tags": []}, {"ts": "6/28/2026 18:38:21", "date": "2026-06-28", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "mantapp sukses selaluu kakk", "email": "gifnafatricasyah2@gmail.com", "tags": []}, {"ts": "6/30/2026 8:39:38", "date": "2026-06-30", "outlet": "Onty Resto", "rating": 5, "text": "🙏👍🫶🏻", "email": "farahfairuz1992@gmail.com", "tags": []}, {"ts": "7/2/2026 18:29:37", "date": "2026-07-02", "outlet": "Onty Resto", "rating": 5, "text": "-", "email": "sasawidianingrum@gmail.com", "tags": []}, {"ts": "7/6/2026 9:50:44", "date": "2026-07-06", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "titik.rozalina@gmail.com", "tags": []}, {"ts": "7/6/2026 16:49:41", "date": "2026-07-06", "outlet": "Onty Resto", "rating": 5, "text": "-", "email": "aniesmelina@gmail.com", "tags": []}, {"ts": "7/9/2026 13:53:20", "date": "2026-07-09", "outlet": "Onty Resto", "rating": 5, "text": "Selalu puas dengan pelayanannya. Produk yang dipesan juga selalu sesuai request. Sukses terus onty cake.", "email": "kurniaayuningtiyas67@gmail.com", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "7/10/2026 13:57:21", "date": "2026-07-10", "outlet": "Onty Resto", "rating": 5, "text": "Pengemasan sangat baik, rapi, pelayanan ramah", "email": "novikhafidziyanti@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "7/10/2026 18:05:41", "date": "2026-07-10", "outlet": "Onty Resto", "rating": 5, "text": "Semoga semakin sukses & tambah banyak promo & discount nya..😊", "email": "meiwulansari83@gmail.com", "tags": []}, {"ts": "7/11/2026 13:40:26", "date": "2026-07-11", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga pelayanan tetep ramah terus ya kak", "email": "dindakurniawidi1402@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "7/11/2026 18:11:18", "date": "2026-07-11", "outlet": "Onty Resto", "rating": 5, "text": "-", "email": "ifamukaromah@gmail.com", "tags": []}, {"ts": "7/12/2026 10:21:44", "date": "2026-07-12", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "nothing", "email": "susilodwi484@gmail.com", "tags": []}, {"ts": "7/12/2026 21:02:52", "date": "2026-07-12", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Good job pokoknya 🥰🥰", "email": "khasanahnikmah234@gmail.com", "tags": []}, {"ts": "7/13/2026 11:52:19", "date": "2026-07-13", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan sangat baik, fast respon dan ramah", "email": "kholilarizqia@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Pelayanan Karyawan/Sikap"]}, {"ts": "7/13/2026 19:09:54", "date": "2026-07-13", "outlet": "Onty Resto", "rating": 5, "text": "Pertahankan rasa dan kenyamanan", "email": "orlinanindita22@gmail.com", "tags": ["Kualitas Rasa Produk", "Pelayanan Karyawan/Sikap"]}, {"ts": "7/14/2026 12:43:32", "date": "2026-07-14", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Onty cake sukses slalu.. ngak menyesal  pokok ny order di onty cake.😁", "email": "fendripuranwan@yahoo.co.id", "tags": []}, {"ts": "7/14/2026 16:51:01", "date": "2026-07-14", "outlet": "Onty Resto", "rating": 5, "text": "banyakin varian rotinya,selalu update produk yg msh viral agar semakin dsukai masyarakat,maju terus onty bakery& terimakasih 🙏🏻", "email": "ieenaisnaini@gmail.com", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "7/15/2026 8:54:28", "date": "2026-07-15", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Terimakasih sudah sangat memuaskan... Rotinya sangat enak", "email": "luthfianasabila60@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "7/16/2026 9:25:30", "date": "2026-07-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Kritiknya gak ada… soalnya sampe skrng alhamdulilah enak kuenya dan pelayanannya bagus.", "email": "fatmahikadewi90@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "7/16/2026 12:53:06", "date": "2026-07-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Udah bagus banget. Tempat nyaman, kue enak enak, pelayanan ramah dan cepat.", "email": "widyastutiarista@gmail.com", "tags": ["Kualitas Rasa Produk", "Kebersihan/Fasilitas", "Pelayanan Karyawan/Sikap"]}, {"ts": "7/17/2026 17:28:23", "date": "2026-07-17", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "tidak ada", "email": "fatmanurisamaulina@gmail.com", "tags": []}, {"ts": "7/17/2026 17:40:33", "date": "2026-07-17", "outlet": "Onty Resto", "rating": 5, "text": "Mantaf", "email": "aisyahputri1011@gmail.com", "tags": []}, {"ts": "7/17/2026 17:48:54", "date": "2026-07-17", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Lgi Gak ada saran dan kritik  , cake nya cantik  dan tiap aku pesan  lewat online respon good terimakasih. 😉", "email": "nan614318@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "7/18/2026 5:21:44", "date": "2026-07-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Admin dan pelayanan di toko sangat baik", "email": "neythamalia@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "7/19/2026 21:21:37", "date": "2026-07-19", "outlet": "Onty Resto", "rating": 4, "text": "Jika mungkin pembeli lupa mengatakan. Bisa tanya dulu \"apa yg perlu ditanyakan lagi? \", selebihnya semuanya OK", "email": "wulan.moon1991@gmail.com", "tags": []}, {"ts": "7/20/2026 9:48:43", "date": "2026-07-20", "outlet": "Onty Resto", "rating": 5, "text": "Sangat memuaskan", "email": "nianofiliafilia@gmail.com", "tags": []}, {"ts": "7/20/2026 10:22:48", "date": "2026-07-20", "outlet": "Onty Resto", "rating": 5, "text": "Pertahankan pelayanannya karna sudah sangat baik bagi konsumen👍", "email": "ainimuzakky@gmail.com", "tags": []}, {"ts": "7/20/2026 16:51:52", "date": "2026-07-20", "outlet": "Onty Resto", "rating": 5, "text": "Tingkatan terus kualitas onty Cake.", "email": "pricillia_8@yahoo.com", "tags": []}, {"ts": "7/21/2026 7:40:13", "date": "2026-07-21", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Rotinya bagusss sesuai yang di request tapii sedilit disayangkan dibagian tulisanya kecil sekali smpe kaya gabisa dibaca dan gaada space padahal aku belinya yang udah full alas biar bisa dibaca gitu tp trnyta kecil huhuh tp gapapa", "email": "gifnafatricasyah2@gmail.com", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "7/21/2026 8:19:11", "date": "2026-07-21", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "NO COMENT KAKK ENAKK BANGETT PUASS😍😍😍", "email": "zavieracantipp@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "7/22/2026 12:30:55", "date": "2026-07-22", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Adminnyaa fastrespon okee bangett", "email": "azzahranisfullail@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "7/22/2026 14:03:29", "date": "2026-07-22", "outlet": "Onty Resto", "rating": 5, "text": "Salam hormat dari pimpinan kami, Alhamdulillah pertahankan pelayanan terbaik nya 👍👍👍", "email": "ahmadmurip2016@gmail.com", "tags": []}, {"ts": "7/24/2026 10:31:21", "date": "2026-07-24", "outlet": "Onty Resto", "rating": 5, "text": "dipertahankan dan ditingkatkan", "email": "arinuraisy1201@gmail.com", "tags": []}, {"ts": "7/24/2026 13:52:34", "date": "2026-07-24", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan sudah bagus, respon cepat, tolong dipertahankan", "email": "lusianakintamani17@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "7/24/2026 18:47:43", "date": "2026-07-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Smuanya baikkkk... Suka bgt...", "email": "kittymundy7989@gmail.com", "tags": []}, {"ts": "7/25/2026 9:17:20", "date": "2026-07-25", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "ongkirnya berubah2 terus, katanya tergantung bawaan, memang bukan tergantung jaraknya ya?", "email": "nuralimia4@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "7/25/2026 13:44:51", "date": "2026-07-25", "outlet": "Onty Resto", "rating": 5, "text": "Semoga tambah sukses terus onty cake and bakery", "email": "irnaindrawati.20@gmail.com", "tags": []}, {"ts": "7/26/2026 9:17:44", "date": "2026-07-26", "outlet": "Onty Resto", "rating": 5, "text": "Mantap, tepat waktu", "email": "nurkhasanah8288@gmail.com", "tags": ["Ketepatan Waktu/Pengiriman"]}, {"ts": "7/26/2026 9:43:51", "date": "2026-07-26", "outlet": "Onty Resto", "rating": 5, "text": "sudah baik pelayanan nya", "email": "naqiyyahismi@gmail.com", "tags": []}, {"ts": "7/26/2026 14:32:20", "date": "2026-07-26", "outlet": "Onty Resto", "rating": 5, "text": "Perlu menu kue tradisional dg versi kekinian", "email": "susminingsih@uingusdur.ac.id", "tags": []}, {"ts": "7/26/2026 14:40:17", "date": "2026-07-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": ".", "email": "salimaalia103@gmail.com", "tags": []}, {"ts": "7/26/2026 17:47:48", "date": "2026-07-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Semoga makin berkualitas & promo stiap bulannya", "email": "lilikaisyah94@gmail.com", "tags": []}, {"ts": "7/26/2026 19:36:23", "date": "2026-07-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Oke", "email": "iinbiogenom@gmail.com", "tags": []}, {"ts": "7/26/2026 20:01:15", "date": "2026-07-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sdh baik trimksh", "email": "dian.mamajo@gmail.com", "tags": []}, {"ts": "7/27/2026 8:43:59", "date": "2026-07-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Gratis ongkir dong kalau masih di sekitar Kota Pekalongan", "email": "henydwihartati36@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "7/27/2026 18:09:04", "date": "2026-07-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Memuaskan selalu pesan onty cake di segala suasana", "email": "emailnyaikke@gmail.com", "tags": []}, {"ts": "7/27/2026 19:11:54", "date": "2026-07-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada, sudah sangat baik.", "email": "amal.rachmawati@gmail.com", "tags": []}, {"ts": "7/28/2026 11:33:24", "date": "2026-07-28", "outlet": "Onty Resto", "rating": 5, "text": "Josh", "email": "ahmadmurip2016@gmail.com", "tags": []}, {"ts": "7/29/2026 9:43:01", "date": "2026-07-29", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah sangat baik, admin nya ramah sekali, pengiriman juga tepat waktu, sukses selalu onty", "email": "alifiayulianikartika@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Ketepatan Waktu/Pengiriman", "Pelayanan Karyawan/Sikap"]}, {"ts": "7/29/2026 17:08:19", "date": "2026-07-29", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "nikennww17@gmail.com", "tags": []}, {"ts": "7/29/2026 19:57:08", "date": "2026-07-29", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pokok ee onty 😍😍👍", "email": "kiranalaundrypekalongan@gmail.com", "tags": []}, {"ts": "7/30/2026 11:56:28", "date": "2026-07-30", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sangat puas bagus banget cake nya kakkk", "email": "indibaiti@gmail.com", "tags": []}, {"ts": "7/30/2026 12:06:28", "date": "2026-07-30", "outlet": "Onty Resto", "rating": 5, "text": "lanjutkan wes onty", "email": "yusfika66@gmail.com", "tags": []}, {"ts": "7/30/2026 19:37:02", "date": "2026-07-30", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Bagus pelayanannya", "email": "siroj_kr36@yahoo.com", "tags": []}, {"ts": "7/31/2026 12:50:57", "date": "2026-07-31", "outlet": "Onty Resto", "rating": 5, "text": "Semua aman, sudah langganan juga di Onty baik Cake UlTah & Dessert\"nya🥰", "email": "claudiatheresia38@gmail.com", "tags": []}, {"ts": "7/31/2026 14:59:26", "date": "2026-07-31", "outlet": "Onty Resto", "rating": 5, "text": "Tidak ada", "email": "naylachuzna@gmail.com", "tags": []}, {"ts": "8/1/2026 9:44:58", "date": "2026-08-01", "outlet": "Onty Resto", "rating": 5, "text": "Pertahankan mutu, kualitas dan pelayanan", "email": "sudiartosopiyah6668@gmail.com", "tags": []}, {"ts": "8/2/2026 13:35:18", "date": "2026-08-02", "outlet": "Onty Resto", "rating": 5, "text": "Sudah baik, next acara semoga bisa order lagi", "email": "dewidawodsaraswati@gmail.com", "tags": []}, {"ts": "8/2/2026 13:52:02", "date": "2026-08-02", "outlet": "Onty Resto", "rating": 5, "text": "pelayanan gercep dan ramah, bisa custom cake sesuai yang dipingin, pokoknya udah baik semua", "email": "rumahungu2728@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "8/2/2026 21:05:50", "date": "2026-08-02", "outlet": "Onty Resto", "rating": 5, "text": "terimakasih rotinya enak pesenan sesuai", "email": "wulanadelia@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "8/3/2026 22:56:54", "date": "2026-08-03", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "pesananya sesuai sama yg ada dicontoh🥰🥰", "email": "devitrimaharanivaru@gmail.com", "tags": []}, {"ts": "8/4/2026 13:21:23", "date": "2026-08-04", "outlet": "Onty Resto", "rating": 5, "text": "Josh", "email": "ahmadmurip2016@gmail.com", "tags": []}, {"ts": "8/4/2026 13:26:57", "date": "2026-08-04", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pertahankan kualitas dan kuantitas", "email": "selaharoro89@gmail.com", "tags": []}, {"ts": "8/6/2026 11:03:32", "date": "2026-08-06", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah baik pelayanan cepat", "email": "psholawati@gmail.com", "tags": []}, {"ts": "8/7/2026 17:59:27", "date": "2026-08-07", "outlet": "Onty Resto", "rating": 4, "text": "sementara belum ada", "email": "sina.avicenna1@gmail.com", "tags": []}, {"ts": "8/8/2026 20:43:35", "date": "2026-08-08", "outlet": "Onty Resto", "rating": 5, "text": "Sangat puas.\nSaya di Solo pun dilayani dgn baik, ketika mau mengirim kue ke saudara yang ada di pekalongan  di respon dan dilayani dgn baik.", "email": "decikayamara@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "8/9/2026 10:06:08", "date": "2026-08-09", "outlet": "Onty Resto", "rating": 5, "text": "Good job onty, pertahankan", "email": "ajeng.winmarta@gmail.com", "tags": []}, {"ts": "8/9/2026 10:56:22", "date": "2026-08-09", "outlet": "Onty Resto", "rating": 5, "text": "Untuk adminya cepet dan tanggal sih bagus", "email": "dewi.tafanna@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "8/10/2026 19:48:46", "date": "2026-08-10", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sesuai ekspektasi banget😍", "email": "orangtersayang@gmail.com", "tags": []}, {"ts": "8/10/2026 22:31:00", "date": "2026-08-10", "outlet": "Onty Resto", "rating": 5, "text": "Fast respon sangat membantu dlm pemesanan dan pengiriman serta pemilihan cake makasih", "email": "augustiny1308@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Ketepatan Waktu/Pengiriman"]}, {"ts": "8/12/2026 12:20:17", "date": "2026-08-12", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "Gratis ongkir area kota Pekalongan dg minimum order lebih disarankan.\nTrimakasih", "email": "mbak.neng28@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "8/12/2026 12:39:11", "date": "2026-08-12", "outlet": "Onty Resto", "rating": 5, "text": "Josh", "email": "ahmadmurip2016@gmail.com", "tags": []}, {"ts": "8/13/2026 17:57:05", "date": "2026-08-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah baik dan komunikatif, pelayanan ramah dan sesuai request pelanggan.", "email": "ristya72@gmail.com", "tags": ["Saran Menu/Varian Baru", "Pelayanan Karyawan/Sikap"]}, {"ts": "8/13/2026 18:00:53", "date": "2026-08-13", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Enak enak jajanya, sm cakenya bagus* dr berbagai harga pun kualitasnya sama.", "email": "enysucimulyani@gmail.com", "tags": ["Kualitas Rasa Produk", "Harga/Ongkir"]}, {"ts": "8/14/2026 18:00:57", "date": "2026-08-14", "outlet": "Onty Resto", "rating": 5, "text": "sangat baik, stafnya ramah-ramah dan hasil pesanan saya sesuai bangett & cantik. request nambah menu taro bun tapi filling creamnya vanilla dong kak soalnya ak gasukaa keju dan biar kalo lagi pengen taro bun gausah harus jauh jauh ke jakarta duluu 🥹🫰🫰 makasiii", "email": "theazurre@gmail.com", "tags": ["Saran Menu/Varian Baru", "Pelayanan Karyawan/Sikap"]}, {"ts": "8/14/2026 18:54:55", "date": "2026-08-14", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Browniesnya gouurihh jos pokok e\n\nPesenan a.n kak shalwa", "email": "arek5ou@gmail.com", "tags": []}, {"ts": "8/15/2026 16:03:18", "date": "2026-08-15", "outlet": "Onty Resto", "rating": 5, "text": "Tidak ada", "email": "kaylasyifa429@gmail.com", "tags": []}, {"ts": "8/15/2026 18:09:16", "date": "2026-08-15", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah bagus pelayanannya rotinya juga enak. Josjis dah 🫰", "email": "azzasonata@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "8/16/2026 17:50:32", "date": "2026-08-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Toko roti te the besttt yang aaku cobaa 🥰🤪", "email": "virrafa6@gmail.vom", "tags": []}, {"ts": "8/17/2026 10:30:17", "date": "2026-08-17", "outlet": "Onty Resto", "rating": 4, "text": "Warna merah kue tart nya ada pait2 nya sedikit", "email": "astrianiarifin087@gmail.cok", "tags": []}, {"ts": "8/18/2026 9:47:45", "date": "2026-08-18", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "elmanurani99@gmail.com", "tags": []}, {"ts": "8/19/2026 13:07:59", "date": "2026-08-19", "outlet": "Onty Resto", "rating": 5, "text": "Baik", "email": "dianrestianaizulhaq@gmail.com", "tags": []}, {"ts": "8/19/2026 20:35:40", "date": "2026-08-19", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "alhamdulillah sangat puas", "email": "rohmi243@gmail.com", "tags": []}, {"ts": "8/20/2026 10:22:10", "date": "2026-08-20", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah bagus pelayanan dan fast reponse", "email": "aickbose@gmail.com", "tags": []}, {"ts": "8/21/2026 15:27:22", "date": "2026-08-21", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "tidak ada", "email": "finaaafinaaa282@gmail.com", "tags": []}, {"ts": "8/21/2026 16:27:16", "date": "2026-08-21", "outlet": "Onty Resto", "rating": 5, "text": "Sudah sangat responsif", "email": "much.alfinilham@gmail.com", "tags": ["Kecepatan Respon Admin/CS"]}, {"ts": "8/21/2026 19:40:23", "date": "2026-08-21", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Baik", "email": "kusumamaulidiyah89@gmail.com", "tags": []}, {"ts": "8/21/2026 20:08:44", "date": "2026-08-21", "outlet": "Onty Resto", "rating": 5, "text": "Alhamdulillah pelayanan onty ramah dan memuaskan", "email": "worowerdiningsih3@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "8/21/2026 21:26:20", "date": "2026-08-21", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sejauh ini aman yaa tidak ada kritik😅😅", "email": "nauraabel00@gmail.com", "tags": []}, {"ts": "8/24/2026 18:50:06", "date": "2026-08-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "T.O.P.B.G.T....pertahankan quality dan pelayanan prima", "email": "varanafisah@gmail.com", "tags": []}, {"ts": "8/24/2026 20:45:14", "date": "2026-08-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "So far so good", "email": "nurasihwigati@gmail.com", "tags": []}, {"ts": "8/26/2026 14:10:06", "date": "2026-08-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "semoga ttp mnjga kualitas", "email": "dwiandriani288@gmail.com", "tags": []}, {"ts": "8/27/2026 15:15:51", "date": "2026-08-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pertahankan trs Kak, Onty Cake baik saat komunikasi dengan pembeli maupun saat pembuatan cake sangat baik", "email": "shinhyekyo303@gmail.com", "tags": ["Kesalahan Pesanan/Miskom"]}, {"ts": "8/27/2026 19:25:06", "date": "2026-08-27", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "kakak kakak admin nya ramahh bangettt, kue nya juga sesuaii requestt, bestt deh ontyy🫰🫰", "email": "njwareisy@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Saran Menu/Varian Baru", "Pelayanan Karyawan/Sikap"]}, {"ts": "8/28/2026 12:07:31", "date": "2026-08-28", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Roti ny sesuai dg yg saya pesan. Rasanta juga enak", "email": "nurikafitriyatulrahma@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "8/28/2026 13:47:54", "date": "2026-08-28", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Overall best 👍", "email": "irawatimegasari@gmail.com", "tags": []}, {"ts": "8/28/2026 19:16:21", "date": "2026-08-28", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Bentuknya sesuai yang diinginkan,, tp untuk warna jgn terlalu tajam deh", "email": "sisdiatidatiet@gmail.com", "tags": []}, {"ts": "8/28/2026 20:12:22", "date": "2026-08-28", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada, keren & gercep puooll. Cake nya juga enak sekalii🤍", "email": "nadinadelia45@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "8/29/2026 18:07:01", "date": "2026-08-29", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan bagus, rotinya enak", "email": "heni.prihesti@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "8/29/2026 18:08:36", "date": "2026-08-29", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan sangat ramah", "email": "ratnafebri00887@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "8/29/2026 19:38:52", "date": "2026-08-29", "outlet": "Onty Resto", "rating": 5, "text": "sangatt memuaskan pokoknyaa\nthe besttt🥰", "email": "diieennaa94@gmail.com", "tags": []}, {"ts": "8/31/2026 10:10:47", "date": "2026-08-31", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Alhamdulillah onty memuaskan", "email": "adefitri1203@gmail.com", "tags": []}, {"ts": "8/31/2026 10:41:15", "date": "2026-08-31", "outlet": "Onty Resto", "rating": 5, "text": "Mantap, pertahanin, bila perlu tingkatkan lagi kak..", "email": "binaayuarista26@gmail.com", "tags": []}, {"ts": "8/31/2026 16:17:53", "date": "2026-08-31", "outlet": "Onty Resto", "rating": 5, "text": "roti onty selalu enak❤️❤️❤️", "email": "yuanitaa237@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "9/1/2026 10:06:19", "date": "2026-09-01", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanannya sdh baik kok..memuaskan", "email": "ikaruisha@gmail.com", "tags": []}, {"ts": "9/1/2026 17:21:47", "date": "2026-09-01", "outlet": "Onty Resto", "rating": 5, "text": "maaf kardus kl roti hny isi 4 kok agak longgar ya kak.", "email": "Sulistyani698@gmail.com", "tags": ["Kemasan/Packaging"]}, {"ts": "9/3/2026 11:51:59", "date": "2026-09-03", "outlet": "Onty Resto", "rating": 5, "text": "mohon ditambah menu paket ayam 22k - 25k, terima kasih", "email": "endahrmd13@gmail.com", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "9/3/2026 20:07:28", "date": "2026-09-03", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Pelayanan sudah baik", "email": "indrianihazaroh12@gmail.com", "tags": []}, {"ts": "9/4/2026 16:47:44", "date": "2026-09-04", "outlet": "Onty Resto", "rating": 5, "text": "Keren lah pokoknya", "email": "anggapandansari@gmail.com", "tags": []}, {"ts": "9/4/2026 18:12:23", "date": "2026-09-04", "outlet": "Onty Resto", "rating": 5, "text": "tetap pertahankan kualitas dan pelayanan ya kak. onty cake the best\nsemoga semakin sukses onty cake", "email": "komala.pong2@gmail.com", "tags": []}, {"ts": "9/5/2026 17:28:34", "date": "2026-09-05", "outlet": "Onty Resto", "rating": 4, "text": "Tas plastik kerdus besar semoga lebih kuat lagi", "email": "ardianiokky@gmail.com", "tags": ["Kemasan/Packaging"]}, {"ts": "9/6/2026 14:02:25", "date": "2026-09-06", "outlet": "Onty Resto", "rating": 5, "text": "Pertahankan🫰🏻", "email": "norma.agustina@yahoo.com", "tags": []}, {"ts": "9/6/2026 14:28:17", "date": "2026-09-06", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Always percaya buat pesen birthday cake di Onty Cake Pekalongan, ini udah yang ke-3 kalinya and never fails! Hasilnya bagus bgt, kuenya enak parah, dan detailnya bener-bener mirip sesuai contoh. Big thanks buat admin and team yang super ramah dan sabar bgt jawabin semua pertanyaan aku yang super banyak. Oh iya, dapet free bonus satu pisau lagi, thank youuu yaaa! 🎂🫶✨\n\nFyi, aku juga langganan beli langsung ke store-nya buat beli berbagai sweet bread nya yang enak-enak buat camilan pribadi atau bingkisan ke orang dekat. Terutama varian pandan kelapa, pandan srikaya, coklat keju, strawberry, abon, sama choco vanilla-nya yang juara bgt. Highly recommended bgt pokoknya buat yang nyari cake and bread di Pekalongan! 😋💚🖤", "email": "zefankamaisie@gmail.com", "tags": ["Kecepatan Respon Admin/CS", "Kualitas Rasa Produk", "Saran Menu/Varian Baru", "Pelayanan Karyawan/Sikap"]}, {"ts": "9/7/2026 9:49:33", "date": "2026-09-07", "outlet": "Onty Resto", "rating": 5, "text": "Puas pelayanannya ramah", "email": "khalilanisa26@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "9/7/2026 13:59:56", "date": "2026-09-07", "outlet": "Onty Resto", "rating": 5, "text": "Sudah baik tidak ada yg perlu dikritik", "email": "hapsarisukma8@gmail.com", "tags": []}, {"ts": "9/7/2026 19:12:35", "date": "2026-09-07", "outlet": "Onty Resto", "rating": 5, "text": "Baik.. ramah..", "email": "ayacahaya832@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "9/7/2026 19:32:58", "date": "2026-09-07", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "-", "email": "elmaspanola@gmail.com", "tags": []}, {"ts": "9/10/2026 18:33:12", "date": "2026-09-10", "outlet": "Onty Resto", "rating": 5, "text": "Sudah bagus. Terus dipertahankan.", "email": "leeshakoe@gmail.com", "tags": []}, {"ts": "9/11/2026 11:35:36", "date": "2026-09-11", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Oke", "email": "melinasafitri91@gmail.com", "tags": []}, {"ts": "9/12/2026 15:00:51", "date": "2026-09-12", "outlet": "Onty Resto", "rating": 5, "text": "samgat ramah pelayanan sangat oke puollll", "email": "faizlazimm@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "9/15/2026 7:05:24", "date": "2026-09-15", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Menu dan bentuk roti sudah baik sekali dan terlihat penuh kak. Sukaaa", "email": "ajeng.ramdhani91@gmail.com", "tags": []}, {"ts": "9/15/2026 15:34:29", "date": "2026-09-15", "outlet": "Onty Resto", "rating": 5, "text": "Sangat baik bgt \nDari segi pelayanan \nMenu jg enak bgt bumbu nyaeresap & Ayam nya empuk bgt", "email": "kristianingsihmenik43@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "9/16/2026 10:31:46", "date": "2026-09-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Tidak ada yg perlu dikritik kak semuanya sesuai", "email": "maffrieda@gmail.com", "tags": []}, {"ts": "9/16/2026 11:19:29", "date": "2026-09-16", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Good", "email": "pinkycynthiasari123@gmail.com", "tags": []}, {"ts": "9/17/2026 21:10:52", "date": "2026-09-17", "outlet": "Onty Resto", "rating": 5, "text": "Saran Rotinya diperbesar harganya Klo bisa diperkecil 😄😄", "email": "fitriatno75@gmail.com", "tags": ["Harga/Ongkir"]}, {"ts": "9/18/2026 13:44:13", "date": "2026-09-18", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "awalnya pengen brownies dengan variasi yang di request eh ternyata malah ga bisa, agak sedikit kecewa disitu sih. padahal bisa nambah budget juga ga apa-apa yang penting sesuai keinginan.\ntapi ya udah deh over all sih oke, kue nya juga enak banget", "email": "solehahasanah4@gmail.com", "tags": ["Kualitas Rasa Produk", "Saran Menu/Varian Baru"]}, {"ts": "9/18/2026 16:42:35", "date": "2026-09-18", "outlet": "Onty Resto", "rating": 5, "text": "Belum ada", "email": "sina.avicenna1@gmail.com", "tags": []}, {"ts": "9/19/2026 10:41:52", "date": "2026-09-19", "outlet": "Onty Resto", "rating": 5, "text": "Tetap tingkatkan pelayanan", "email": "elevna.bemylev@gmail.com", "tags": []}, {"ts": "9/19/2026 12:48:16", "date": "2026-09-19", "outlet": "Onty Resto", "rating": 4, "text": "Area resto byk pegawai yg duduk2...dr sudut pandang pembeli menurut sy agak mengganggu..apalagi mereka kurang peduli dg keberadaan kami...ttp sj mrk asik duduk2 mengobrol tanpa bertanya..sebagai costumer tentu kami tdk tahu bgm pembagian kerja maupun tgs msg2 personel..tp yg terlihat spt resto yg kebanyakan pegawai dan mrk tdk tau mau kerja apa hya duduk2 ngobrol saja...\nDmk kritik sy...mohon maaf apabila menyinggung..sy hya ingin  jujur berpendapat dr sudut pandang costumer...semoga onty cake n bakery bs lebih maju dan ramai pembeli...aamiin", "email": "vava.thoha@gmail.com", "tags": []}, {"ts": "9/19/2026 21:29:57", "date": "2026-09-19", "outlet": "Onty Resto", "rating": 5, "text": "Sangat ramah dan cepat", "email": "amandaaddawiyah48@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "9/20/2026 18:14:49", "date": "2026-09-20", "outlet": "Onty Resto", "rating": 5, "text": "Terus tetap konsisten ya kak", "email": "ayupraniti10@gmail.com", "tags": []}, {"ts": "9/22/2026 16:39:57", "date": "2026-09-22", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah sangat memuaskan 😘", "email": "81linsugi@gmail.com", "tags": []}, {"ts": "9/23/2026 15:33:38", "date": "2026-09-23", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "_", "email": "winda.empire@gmail.com", "tags": []}, {"ts": "9/24/2026 8:00:02", "date": "2026-09-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "tdk ada kritik krn selalu langganan", "email": "rinakurnialestari679@gmail.com", "tags": []}, {"ts": "9/24/2026 13:23:34", "date": "2026-09-24", "outlet": "Onty Resto", "rating": 5, "text": "Secara keseluruhan Onty Cake sudah enak dan cukup memuaskan. Rasanya juga cocok dan tampilannya menarik.\nSemoga Onty Cake semakin berkembang, kualitasnya semakin baik, dan pelayanannya semakin memuaskan. Sukses selalu untuk Onty Cake! 😊", "email": "viealmira@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "9/24/2026 19:48:40", "date": "2026-09-24", "outlet": "Onty Resto", "rating": 5, "text": "Pelayanan baik.. Rasa favorit", "email": "cipa22.cc@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "9/24/2026 22:46:13", "date": "2026-09-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Sudah sangat bagus… pesanan selalu sesuai request", "email": "ekkirianirukmaningrum@gmail.com", "tags": ["Saran Menu/Varian Baru"]}, {"ts": "9/24/2026 22:47:47", "date": "2026-09-24", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sangat puas kak", "email": "prayogaditya082@gmail.com", "tags": []}, {"ts": "9/26/2026 20:12:21", "date": "2026-09-26", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "sudah bagus", "email": "nurisromiyah24@gmail.com", "tags": []}, {"ts": "9/28/2026 10:24:10", "date": "2026-09-28", "outlet": "Onty Cake & Bakery", "rating": 4, "text": "sudah cukup baik, tapi untuk dibenahi lagi di toko karyawan nya pada judes dan kadang ngelihatin terus saat lagi milih2 bikin ga nyaman", "email": "wahyupujiastuti246@gmail.com", "tags": ["Pelayanan Karyawan/Sikap"]}, {"ts": "9/30/2026 13:01:13", "date": "2026-09-30", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "Rasany enak sekali", "email": "ervinawulandari296@gmail.com", "tags": ["Kualitas Rasa Produk"]}, {"ts": "9/30/2026 15:16:33", "date": "2026-09-30", "outlet": "Onty Resto", "rating": 5, "text": "Sarannya: persediaan roti yg ada di bakery di jalan imam Bonjol lebih diperbanyak, mba. Karena saya pernah mengalami sendiri pada waktu mau beli roti persediaan sudah habis dan belum dibuat sama sekali. \nTolong untuk diperbaiki segera ya.. terima kasih 🙏", "email": "yessicaparamithaa.27@gmail.com", "tags": ["Ketersediaan Stok"]}, {"ts": "9/30/2026 20:45:58", "date": "2026-09-30", "outlet": "Onty Cake & Bakery", "rating": 5, "text": "--", "email": "annisarahmamalika@gmail.com", "tags": []}];
 
-  const form = document.getElementById('voteForm');
-  const thankyou = document.getElementById('thankyou');
-  const errorMsg = document.getElementById('errorMsg');
-  const submitBtn = document.getElementById('submitBtn');
-  const textarea = document.getElementById('kritikSaran');
-  const charCount = document.getElementById('charCount');
-  const emailInput = document.getElementById('email');
-  const lainnyaCheckbox = document.getElementById('alasan-lainnya');
-  const lainnyaWrap = document.getElementById('alasanLainnyaWrap');
-  const lainnyaText = document.getElementById('alasanLainnyaText');
+const OUTLET_META = {
+  "Onty Resto": {addr:"Jl. Imam Bonjol No 47, Pekalongan"},
+  "Onty Cake & Bakery": {addr:"Jl. Toba No 39, Pekalongan"}
+};
 
-  textarea.addEventListener('input', () => {
-    charCount.textContent = textarea.value.length;
+function parseDate(dstr){ return new Date(dstr+"T00:00:00"); }
+
+const ALL_DATES = DATA.map(d=>d.date).sort();
+const MIN_DATE = ALL_DATES[0];
+const MAX_DATE = ALL_DATES[ALL_DATES.length-1];
+
+let filterState = { from: null, to: null, activeMonth: "all" };
+
+function getFilteredData(){
+  return DATA.filter(d=>{
+    if(filterState.from && d.date < filterState.from) return false;
+    if(filterState.to && d.date > filterState.to) return false;
+    return true;
+  });
+}
+
+function fmtLabelDate(dstr){
+  const dt = parseDate(dstr);
+  const bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+  return `${dt.getDate()} ${bulan[dt.getMonth()]} ${dt.getFullYear()}`;
+}
+
+function updatePeriodLabel(){
+  const fd = getFilteredData();
+  const from = filterState.from || MIN_DATE;
+  const to = filterState.to || MAX_DATE;
+  document.getElementById("periodLabel").textContent = `${fmtLabelDate(from)} — ${fmtLabelDate(to)}`;
+  document.getElementById("periodCount").textContent = fd.length;
+}
+
+function renderMonthFilters(){
+  const months = [...new Set(DATA.map(d=>d.date.slice(0,7)))].sort();
+  const monthNames = {"01":"Jan","02":"Feb","03":"Mar","04":"Apr","05":"Mei","06":"Jun","07":"Jul","08":"Agu","09":"Sep","10":"Okt","11":"Nov","12":"Des"};
+  const chips = [{key:"all", label:"Semua"}].concat(months.map(m=>({key:m, label:monthNames[m.slice(5,7)]+" "+m.slice(0,4)})));
+  document.getElementById("monthFilters").innerHTML = chips.map(c=>`
+    <div class="chip ${filterState.activeMonth===c.key?'active':''}" data-month="${c.key}">${c.label}</div>
+  `).join("");
+  document.querySelectorAll("[data-month]").forEach(el=>{
+    el.onclick = ()=>{
+      const m = el.dataset.month;
+      filterState.activeMonth = m;
+      if(m==="all"){
+        filterState.from = null; filterState.to = null;
+        document.getElementById("dateFrom").value = "";
+        document.getElementById("dateTo").value = "";
+      } else {
+        const monthDates = DATA.filter(d=>d.date.startsWith(m)).map(d=>d.date).sort();
+        filterState.from = monthDates[0];
+        filterState.to = monthDates[monthDates.length-1];
+        document.getElementById("dateFrom").value = filterState.from;
+        document.getElementById("dateTo").value = filterState.to;
+      }
+      renderAll();
+    };
+  });
+}
+
+document.getElementById("dateFrom").min = MIN_DATE;
+document.getElementById("dateFrom").max = MAX_DATE;
+document.getElementById("dateTo").min = MIN_DATE;
+document.getElementById("dateTo").max = MAX_DATE;
+
+document.getElementById("dateFrom").addEventListener("change", (e)=>{
+  filterState.from = e.target.value || null;
+  filterState.activeMonth = "custom";
+  renderAll();
+});
+document.getElementById("dateTo").addEventListener("change", (e)=>{
+  filterState.to = e.target.value || null;
+  filterState.activeMonth = "custom";
+  renderAll();
+});
+document.getElementById("resetFilterBtn").onclick = ()=>{
+  filterState = { from: null, to: null, activeMonth: "all" };
+  document.getElementById("dateFrom").value = "";
+  document.getElementById("dateTo").value = "";
+  renderAll();
+};
+
+// ---------- KPIs ----------
+function renderKPIs(){
+  const fdata = getFilteredData();
+  if(fdata.length===0){
+    document.getElementById("kpis").innerHTML = `<div class="kpi" style="grid-column:1/-1;text-align:center;color:var(--ink-soft);">Tidak ada data pada periode ini.</div>`;
+    return;
+  }
+  const total = fdata.length;
+  const avg = (fdata.reduce((s,d)=>s+d.rating,0)/total);
+  const pct5 = fdata.filter(d=>d.rating===5).length/total*100;
+  const pctSatisfied = fdata.filter(d=>d.rating>=4).length/total*100;
+  const byOutlet = {};
+  fdata.forEach(d=>{(byOutlet[d.outlet]=byOutlet[d.outlet]||[]).push(d.rating);});
+  let best = null, bestAvg=-1;
+  Object.entries(byOutlet).forEach(([o,arr])=>{
+    const a = arr.reduce((s,v)=>s+v,0)/arr.length;
+    if(a>bestAvg){bestAvg=a;best=o;}
   });
 
-  lainnyaCheckbox.addEventListener('change', () => {
-    lainnyaWrap.classList.toggle('show', lainnyaCheckbox.checked);
-    if (!lainnyaCheckbox.checked) lainnyaText.value = '';
+  const kpis = [
+    {label:"Total Respons", value: total, unit:"ulasan"},
+    {label:"Rata-rata Rating", value: avg.toFixed(2), unit:"/ 5.0"},
+    {label:"Pelanggan Puas (≥4)", value: pctSatisfied.toFixed(0)+"%", unit:""},
+    {label:"Outlet Skor Tertinggi", value: best.replace("Onty ",""), unit:bestAvg.toFixed(2)+" avg"}
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(k=>`
+    <div class="kpi">
+      <div class="label">${k.label}</div>
+      <div class="value">${k.value}${k.unit?`<small>${k.unit}</small>`:""}</div>
+    </div>`).join("");
+}
+
+// ---------- Monthly trend ----------
+const MONTH_SHORT = {"01":"Jan","02":"Feb","03":"Mar","04":"Apr","05":"Mei","06":"Jun","07":"Jul","08":"Agu","09":"Sep","10":"Okt","11":"Nov","12":"Des"};
+function renderTrend(){
+  const fdata = getFilteredData();
+  const buckets = {};
+  fdata.forEach(d=>{
+    const m = d.date.slice(0,7);
+    (buckets[m]=buckets[m]||[]).push(d.rating);
+  });
+  const keys = Object.keys(buckets).sort();
+  const pts = keys.map(w=>({w, avg: buckets[w].reduce((s,v)=>s+v,0)/buckets[w].length, n:buckets[w].length}));
+  if(pts.length===0){ document.getElementById("trendChart").innerHTML=""; return; }
+
+  const W=640,H=200,padL=30,padR=10,padT=16,padB=28;
+  const xStep = (W-padL-padR)/(pts.length-1||1);
+  const yMin=3, yMax=5;
+  const yPos = v => padT + (yMax-v)/(yMax-yMin)*(H-padT-padB);
+  const xPos = i => padL + i*xStep;
+
+  let path = pts.map((p,i)=>`${i===0?'M':'L'} ${xPos(i)} ${yPos(p.avg)}`).join(" ");
+  let area = path + ` L ${xPos(pts.length-1)} ${H-padB} L ${xPos(0)} ${H-padB} Z`;
+
+  let gridLines = "";
+  [3,3.5,4,4.5,5].forEach(v=>{
+    const y = yPos(v);
+    gridLines += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#E4D8C0" stroke-width="1"/>`;
+    gridLines += `<text x="4" y="${y+3}" class="axis-label">${v.toFixed(1)}</text>`;
   });
 
-  // Cegah vote dobel dari perangkat yang sama (bisa dilewati, tapi cukup untuk kasus umum)
-  const STORAGE_KEY = 'onty_vote_submitted';
-  if (localStorage.getItem(STORAGE_KEY) === 'true') {
-    form.classList.add('hide');
-    thankyou.classList.add('show');
-    thankyou.querySelector('p').textContent = 'Kamu sudah pernah mengisi penilaian ini sebelumnya. Terima kasih ya!';
+  let dots = pts.map((p,i)=>`
+    <circle cx="${xPos(i)}" cy="${yPos(p.avg)}" r="4" fill="#C4872E" stroke="#FDFAF2" stroke-width="2"/>
+    <text x="${xPos(i)}" y="${H-8}" text-anchor="middle" class="axis-label">${MONTH_SHORT[p.w.slice(5,7)]} (n=${p.n})</text>
+  `).join("");
+
+  document.getElementById("trendChart").innerHTML = `
+    ${gridLines}
+    <path d="${area}" fill="#C4872E" opacity="0.12"/>
+    <path d="${path}" fill="none" stroke="#C4872E" stroke-width="2.5"/>
+    ${dots}
+  `;
+}
+
+// ---------- Rating distribution ----------
+function renderRatingDist(){
+  const fdata = getFilteredData();
+  const counts = {5:0,4:0,3:0,2:0,1:0};
+  fdata.forEach(d=>counts[d.rating]++);
+  const max = Math.max(...Object.values(counts));
+  const labels = {5:"5 · Sangat baik",4:"4 · Baik",3:"3 · Cukup",2:"2 · Kurang",1:"1 · Buruk"};
+  let html = "";
+  [5,4,3,2,1].forEach(r=>{
+    if(counts[r]===0 && r<3) return;
+    const pct = max? (counts[r]/max*100) : 0;
+    html += `<div class="rbar-row">
+      <div class="rlabel">${labels[r]}</div>
+      <div class="rtrack"><div class="rfill" style="width:${pct}%"></div></div>
+      <div class="rcount">${counts[r]} resp.</div>
+    </div>`;
+  });
+  document.getElementById("ratingDist").innerHTML = html;
+}
+
+// ---------- Outlet comparison ----------
+function renderOutlets(){
+  const fdata = getFilteredData();
+  const byOutlet = {};
+  fdata.forEach(d=>{(byOutlet[d.outlet]=byOutlet[d.outlet]||[]).push(d);});
+  if(Object.keys(byOutlet).length===0){ document.getElementById("outlets").innerHTML = `<p style="color:var(--ink-soft);">Tidak ada data.</p>`; return; }
+  const html = Object.entries(byOutlet).map(([o,arr])=>{
+    const avg = arr.reduce((s,d)=>s+d.rating,0)/arr.length;
+    const pctTop = (arr.filter(d=>d.rating===5).length/arr.length*100).toFixed(0);
+    const withCritique = arr.filter(d=>d.tags.length>0).length;
+    return `<div class="outlet-card">
+      <div class="oname">${o}</div>
+      <div class="oaddr">${OUTLET_META[o].addr}</div>
+      <div class="oscore-row">
+        <div class="oscore">${avg.toFixed(2)}</div>
+        <div class="oscore-of">/ 5.0 rata-rata</div>
+        <span class="opill">${arr.length} respons</span>
+      </div>
+      <div class="ostats">
+        <span><b>${pctTop}%</b> beri skor 5</span>
+        <span><b>${withCritique}</b> beri masukan spesifik</span>
+      </div>
+    </div>`;
+  }).join("");
+  document.getElementById("outlets").innerHTML = html;
+}
+
+// ---------- Feed ----------
+let state = { outlet:"all", rating:"all", q:"" };
+
+function renderFilters(){
+  const outlets = ["all", ...Object.keys(OUTLET_META)];
+  document.getElementById("outletFilters").innerHTML = outlets.map(o=>`
+    <div class="chip ${state.outlet===o?'active':''}" data-outlet="${o}">${o==="all"?"Semua Outlet":o}</div>
+  `).join("");
+  const ratings = ["all",5,4,3];
+  document.getElementById("ratingFilters").innerHTML = ratings.map(r=>`
+    <div class="chip ${state.rating==r?'active':''}" data-rating="${r}">${r==="all"?"Semua Rating":"Rating "+r}</div>
+  `).join("");
+
+  document.querySelectorAll("[data-outlet]").forEach(el=>{
+    el.onclick = ()=>{ state.outlet = el.dataset.outlet; renderFilters(); renderFeed(); };
+  });
+  document.querySelectorAll("[data-rating]").forEach(el=>{
+    el.onclick = ()=>{ state.rating = el.dataset.rating==="all"?"all":Number(el.dataset.rating); renderFilters(); renderFeed(); };
+  });
+}
+
+function renderFeed(){
+  const fdata = getFilteredData();
+  let items = fdata.filter(d=>{
+    if(state.outlet!=="all" && d.outlet!==state.outlet) return false;
+    if(state.rating!=="all" && d.rating!==state.rating) return false;
+    if(state.q && !d.text.toLowerCase().includes(state.q.toLowerCase())) return false;
+    return true;
+  }).slice().reverse();
+
+  document.getElementById("genCount").textContent = `Menampilkan ${items.length} dari ${fdata.length} respons pada periode ini (total ${DATA.length})`;
+
+  if(items.length===0){
+    document.getElementById("feed").innerHTML = `<div class="empty-state">Tidak ada ulasan yang cocok dengan filter ini.</div>`;
+    return;
   }
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    errorMsg.classList.remove('show');
+  document.getElementById("feed").innerHTML = items.map(d=>`
+    <div class="ticket">
+      <div class="t-top">
+        <div class="t-outlet">${d.outlet}</div>
+        <div class="t-score s${d.rating}">${d.rating}</div>
+      </div>
+      <div class="t-text">${escapeHtml(d.text)}</div>
+      ${d.tags.length? `<div class="t-tags">${d.tags.map(t=>`<span class="t-tag">${t}</span>`).join("")}</div>` : ""}
+      <div class="t-date">${d.ts}</div>
+    </div>
+  `).join("");
+}
 
-    const email = emailInput.value.trim();
-    const voteOutlet = form.querySelector('input[name="voteOutlet"]:checked');
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+function escapeHtml(s){
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
 
-    if (!emailValid || !voteOutlet) {
-      errorMsg.classList.add('show');
-      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+document.getElementById("searchBox").addEventListener("input",(e)=>{
+  state.q = e.target.value;
+  renderFeed();
+});
 
-    const alasanTerpilih = Array.from(form.querySelectorAll('input[name="alasan"]:checked'))
-      .map(cb => cb.value === 'Lainnya' && lainnyaText.value.trim()
-        ? lainnyaText.value.trim()
-        : cb.value)
-      .filter(v => v !== 'Lainnya');
+// ---------- AI Summary ----------
+const POS_THEMES = {
+  "Rasa produk enak & lembut": ["enak","enakk","enak2","lembut"],
+  "Pelayanan ramah & sopan": ["ramah","friendly","sopan"],
+  "Respon cepat & sigap": ["cepat","fast","gercep","respon"],
+  "Amanah & bisa dipercaya": ["amanah","percaya","terpercaya"],
+  "Tempat nyaman & bersih": ["nyaman","bersih","luas"],
+  "Konsisten & dipertahankan": ["konsisten","pertahankan","dipertahankan"],
+};
+const ISSUE_LABELS = {
+  "Harga/Ongkir": "permintaan promo & sensitivitas harga",
+  "Kecepatan Respon Admin/CS": "kecepatan respon admin/CS",
+  "Saran Menu/Varian Baru": "permintaan variasi menu baru",
+  "Ketepatan Waktu/Pengiriman": "ketepatan waktu pengiriman/kedatangan",
+  "Kualitas Rasa Produk": "konsistensi rasa pada item tertentu",
+  "Kebersihan/Fasilitas": "kebersihan & fasilitas",
+  "Kesalahan Pesanan/Miskom": "kesalahan pencatatan/komunikasi pesanan",
+  "Kemasan/Packaging": "kemasan & packaging",
+};
 
-    const payload = {
-      email: email,
-      voteOutlet: voteOutlet.value,
-      alasan: alasanTerpilih.join(', '),
-      kritikSaran: textarea.value.trim(),
-      userAgent: navigator.userAgent,
-      halaman: location.href
-    };
+function renderAISummary(){
+  const fdata = getFilteredData();
+  const el = document.getElementById("aiSummary");
+  if(fdata.length===0){
+    el.innerHTML = `<div class="ai-empty">Tidak cukup data pada periode ini untuk dianalisis.</div>`;
+    return;
+  }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Mengirim...';
+  const total = fdata.length;
+  const avg = fdata.reduce((s,d)=>s+d.rating,0)/total;
+  const pctSatisfied = fdata.filter(d=>d.rating>=4).length/total*100;
+  const lowRatings = fdata.filter(d=>d.rating<=3);
 
-    try {
-      if (GAS_URL && GAS_URL.indexOf('PASTE_URL') === -1) {
-        // mode 'no-cors' + Content-Type text/plain agar tidak kena preflight
-        // dari Google Apps Script (lihat PANDUAN-SETUP.md)
-        await fetch(GAS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        });
-      } else {
-        console.warn('GAS_URL belum diisi — data hanya tampil di console, belum masuk Google Sheet.');
-        console.log('Payload vote:', payload);
-      }
-
-      localStorage.setItem(STORAGE_KEY, 'true');
-      form.classList.add('hide');
-      thankyou.classList.add('show');
-      thankyou.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {
-      console.error(err);
-      errorMsg.textContent = 'Waduh, gagal mengirim. Coba periksa koneksi internet kamu dan kirim ulang ya.';
-      errorMsg.classList.add('show');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Kirim Penilaian';
-    }
+  // positive themes
+  const posCounts = {};
+  fdata.forEach(d=>{
+    const t = d.text.toLowerCase();
+    Object.entries(POS_THEMES).forEach(([label,kws])=>{
+      if(kws.some(kw=>t.includes(kw))) posCounts[label]=(posCounts[label]||0)+1;
+    });
   });
-</script>
+  const topPos = Object.entries(posCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
 
+  // issue themes
+  const issueCounts = {};
+  fdata.forEach(d=>d.tags.forEach(t=>issueCounts[t]=(issueCounts[t]||0)+1));
+  const topIssues = Object.entries(issueCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+  // outlet trend note: compare first half vs second half avg per outlet
+  const byOutlet = {};
+  fdata.forEach(d=>{(byOutlet[d.outlet]=byOutlet[d.outlet]||[]).push(d);});
+  let outletNote = "";
+  const outletEntries = Object.entries(byOutlet);
+  if(outletEntries.length===2){
+    const [[o1,a1],[o2,a2]] = outletEntries;
+    const avg1 = a1.reduce((s,d)=>s+d.rating,0)/a1.length;
+    const avg2 = a2.reduce((s,d)=>s+d.rating,0)/a2.length;
+    const better = avg1>=avg2 ? o1 : o2;
+    const diff = Math.abs(avg1-avg2).toFixed(2);
+    outletNote = diff >= 0.05
+      ? `${better} sedikit unggul dengan selisih rata-rata ${diff} poin dibanding outlet satunya pada periode ini.`
+      : `Kedua outlet menunjukkan performa yang setara pada periode ini.`;
+  }
+
+  const narrative = `Dari ${total} respons pada periode terpilih, rata-rata kepuasan pelanggan berada di <b>${avg.toFixed(2)}/5</b> dengan <b>${pctSatisfied.toFixed(0)}%</b> pelanggan memberi skor 4 atau 5. ${lowRatings.length>0 ? `Terdapat <b>${lowRatings.length}</b> respons dengan skor ≤3 (${(lowRatings.length/total*100).toFixed(1)}% dari total) yang layak ditindaklanjuti langsung.` : `Tidak ada respons dengan skor ≤3 pada periode ini — sinyal yang sangat positif.`} ${outletNote}`;
+
+  const posHtml = topPos.length ? topPos.map(([label,n])=>`
+    <li>${label} <span class="n">(${n} respons)</span></li>
+  `).join("") : `<li>Belum ada pola pujian spesifik terdeteksi pada periode ini.</li>`;
+
+  const issueHtml = topIssues.length ? topIssues.map(([tag,n])=>`
+    <li>${ISSUE_LABELS[tag]||tag} <span class="n">(${n} respons)</span></li>
+  `).join("") : `<li>Tidak ada tema keluhan berulang terdeteksi pada periode ini.</li>`;
+
+  // recommendations derived from top issues
+  const recoMap = {
+    "Harga/Ongkir": "Pertimbangkan program promo/bundling rutin dan evaluasi kebijakan ongkir untuk jarak jauh, mengingat ini tema yang paling sering disebut.",
+    "Kecepatan Respon Admin/CS": "Tetapkan target waktu respon (SLA) untuk chat WhatsApp/CS agar konsisten, terutama saat jam sibuk.",
+    "Saran Menu/Varian Baru": "Kumpulkan permintaan varian menu dari pelanggan secara berkala sebagai input pengembangan produk musiman.",
+    "Ketepatan Waktu/Pengiriman": "Perkuat estimasi waktu pengiriman/pengambilan pesanan dan beri notifikasi proaktif bila ada potensi keterlambatan.",
+    "Kualitas Rasa Produk": "Lakukan quality check berkala pada item yang disebut spesifik (bukan rasa keseluruhan) untuk menjaga konsistensi resep.",
+    "Kebersihan/Fasilitas": "Tinjau kembali SOP kebersihan outlet dan kesiapan fasilitas cadangan (mis. genset) untuk mencegah gangguan operasional.",
+    "Kesalahan Pesanan/Miskom": "Perbaiki alur komunikasi internal antar kasir, admin, dan pelayan agar tidak terjadi kesalahan pencatatan status pembayaran/pesanan.",
+    "Kemasan/Packaging": "Evaluasi ulang material kemasan untuk produk yang mudah rusak/lengket agar kualitas terjaga sampai ke tangan pelanggan.",
+  };
+  const recoList = topIssues.slice(0,4).map(([tag])=>recoMap[tag]).filter(Boolean);
+  if(recoList.length===0) recoList.push("Pertahankan standar layanan saat ini — data menunjukkan tidak ada pola keluhan signifikan pada periode ini.");
+
+  el.innerHTML = `
+    <div class="ai-narrative">${narrative}</div>
+    <div class="ai-grid">
+      <div class="ai-block">
+        <h3><span class="ai-dot good"></span>Kekuatan Utama</h3>
+        <ul class="ai-list">${posHtml}</ul>
+      </div>
+      <div class="ai-block">
+        <h3><span class="ai-dot watch"></span>Area Perlu Perhatian</h3>
+        <ul class="ai-list">${issueHtml}</ul>
+      </div>
+    </div>
+    <div class="ai-reco">
+      <h3>Rekomendasi Tindakan</h3>
+      <ol>${recoList.map((r,i)=>`<li><b>${i+1}.</b> ${r}</li>`).join("")}</ol>
+    </div>
+  `;
+}
+
+function renderAll(){
+  updatePeriodLabel();
+  renderMonthFilters();
+  renderKPIs();
+  renderAISummary();
+  renderTrend();
+  renderRatingDist();
+  renderOutlets();
+  renderFeed();
+}
+
+renderFilters();
+renderAll();
+</script>
 </body>
 </html>
